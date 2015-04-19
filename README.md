@@ -1,2 +1,2 @@
 # firefight
-source coming soon
+https://firefight.firebaseapp.com/
