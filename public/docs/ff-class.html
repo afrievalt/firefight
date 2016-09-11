@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ff-class attribute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        b { color: red;}
+        div.isImportant {color: red}
+        div.red {color: red}
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>ff-class</h1>
+        <a href="../docs.html">< Back To docs</a>
+        <h3>Purpose</h3>
+        <p>The ff-class attribute allows you to add a css class to an element.  Values beginning with _ & # are special values for greater control.</p>
+        <h3>Simple class</h3>                
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>            
+<div id="ffSample2"><label><input type="checkbox" id="isImportant"/> This is important!!</label>
+<div ff-class="isImportant">I'm red when this div has class 'isImportant'</div>
+<!-- in style: div.isImportant {color: red} -->
+</div>
+            <h4>Firebase emulator</h4>
+            <li><span>isImportant: {{isImportant}}</span></li>
+            </div>
+         <p>
+             In this example, if isImportant is truthy
+         </p>
+         <h3>Hash class</h3>   
+         <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample3"></pre>
+            <h4>Result</h4>
+<div id="ffSample3"><a href="#red">make red<a/><br>
+<a href="#">clear</a>
+<div ff-class="#red">I'm red when this div has class 'red'</div>
+<!-- in style: div.red {color: red} -->
+</div>
+</div>
+            <p>In this example, if the url contains the hash #red, the class red will be added to the div.  Notice this example has no Firebase emulator because changing the hash has no effect on firebase or the view-model.</p>
+            <h3>ff-class="_selected"</h3>
+            <p>_selected will add the class selected when the list item is selected.  _not-selected will add the class not-selected when the list item is not selected.  You are responsible to setup the css class rules to  hide and show the proper row.  </p>
+            <a href="./ff-select.html">See ff-select attribute</a>
+            <h3>Other resources</h3>
+            <ul>
+            <li>What is Truthy & Falsey? <a href="http://james.padolsey.com/javascript/truthy-falsey/" target="window">Truthy & Falsey</a> </li>           
+            </ul>
+            </div>
+
+        <a href="../docs.html">< Back To docs</a>                
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>    
+</body>
+</html>

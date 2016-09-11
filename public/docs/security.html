@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>simple chat</title>
+   <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        b { color: red;}
+    </style>
+</head>
+<body ff-root="torid-fire-5369">
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>Simple Chat</h1>
+        <a href="../samples.html">< Back To Samples</a>        
+        <p>This sample shows how to create a chat app with firefight.  Type in the message box and hit send.  Please be kind.  This is an unsecured.  Later examples will show how to secure this app.</p>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>
+<div id="ffSample2"><ul ff-foreach="simpleChatList">
+    <li>
+        <img data-bind="ffImg: usrImg">
+        {{message}} 
+    </li>
+</ul>
+
+<a href="#" ff-login="facebook">login</a> with facebook to put your image next to your message
+<form ff-submit="simpleChatList">
+    <input id="usrImg" type="hidden" atr-user="imgUrl"/>        
+    <label>Message: <textarea id="message" ></textarea></label>    
+
+    <button type="submit">send</button>
+</form>
+</div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span><i class="icon-plus-sign"></i> simpleChatList</span>
+                        <ul ff-foreach="simpleChatList">                            
+                            <li>
+                                <!--<span><i class="icon-plus-sign"></i> {{_id}}</span>-->
+                                <span><i class="icon-minus-sign"></i> {{_id}}</span>
+                                <ul>
+                                    <li><span>usrImg: {{usrImg}}</span></li>
+                                    <li><span>message: {{message}}</span></li>
+                                </ul>
+                            </li>                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>        </div>
+
+        <a href="../samples.html">< Back To Samples</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>

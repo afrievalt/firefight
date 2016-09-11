@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ff-select attribute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        div.edit, 
+        #ffSample2 li.not-selected div.veiw {
+            display: none;
+        }
+        #ffSample2 li.not-selected div.edit {
+            display: block;
+        }
+        
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>ff-class</h1>
+        <a href="../docs.html">< Back To docs</a>
+        <h3>Purpose</h3>
+        <p>The ff-select attribute allows an end user to select and edit a row.</p>
+        <h3>Sample select</h3>                
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>            
+<div id="ffSample2"><div>click to edit</div>
+<ul ff-foreach="people">
+    <li ff-class="_not-selected">
+        <div ff-select class="veiw">{{lastName}}</div>
+        <div class="edit"><input atr-id="lastName"/></div>
+    </li>
+</ul>
+</div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span><i class="icon-plus-sign"></i> people</span>
+                        <ul data-bind="ffForEachObject: people">
+                            <li>
+                                <span><i class="icon-minus-sign"></i> {{_key}}</span>
+                                <ul ff-foreach="$data">
+                                    <li><span>{{_key}}: {{_value}}</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            </div>
+         <p>
+             In this example, if isImportant is truthy
+         </p>
+         
+            <p>In this example, if the url contains the hash #red, the class red will be added to the div.  Notice this example has no Firebase emulator because changing the hash has no effect on firebase or the view-model.</p>
+            <h3>ff-class="_select"</h3>
+            <p>_selected will add the class selected when the list item is selected.  _not-selected will add the class not-selected when the list item is not selected.</p>
+            <a href="./ff-select.html">See ff-select attribute</a>
+            <h3>Other resources</h3>
+            <ul>
+            <li>What is Truthy & Falsey? <a href="http://james.padolsey.com/javascript/truthy-falsey/" target="window">Truthy & Falsey</a> </li>           
+            </ul>
+            </div>
+
+        <a href="../docs.html">< Back To docs</a>                
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>    
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿body {
+}
+.syntaxhighlighter {
+    width: 540px;
+    overflow-x: auto;
+    margin-bottom: 1.8em;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+    border-radius: 0.5em;
+}
+
+.syntaxhighlighter table .container{
+    width: 520px;
+}
+
+.container {
+    padding: 5px;
+}
+
+div.live {
+    border: double 1px black;
+    padding: 5px;
+    background-color: #e8e5e5
+}
+
+table code {
+    padding: 0;
+    font-size: 100%;
+    white-space: normal;
+    background-color: rgb(18, 18, 18);
+    border-radius: 0;
+    border: 0;
+}
+
+.pictureLinks a {
+    margin: 0 50px 0 35px;
+}
+
+div#navbar-header {
+    margin-left: 0;
+}
+
+#brand {
+    padding-left: 20px;
+}
+
+
+

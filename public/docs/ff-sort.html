@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ff-sort attribute</title>
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        b { color: red;}
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>ff-sort</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>The ff-sort attribute allows end users to sort a list.</p>
+
+        <h3>Sample: list of objects</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>
+<div id="ffSample2"><table>
+    <thead>
+        <tr>
+            <td ff-sort="tbodyNames:firstName">First Name</td>            
+            <td ff-sort="tbodyNames:lastName">Last Name</td>
+            <td ff-sort="tbodyNames:city">City</td>            
+        </tr>
+    </thead>
+    <tbody id="tbodyNames" ff-foreach="people" atr-sort="-city">
+        <tr>
+            <td>{{firstName}}</td>            
+            <td>{{lastName}}</td>
+            <td>{{city}}</td>            
+        </tr>
+    </tbody>    
+</table>
+</div>
+<h4>current atr-sort</h4>
+<p>atr-sort="-city"</p>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span><i class="icon-plus-sign"></i> people</span>
+                        <ul data-bind="ffForEachObject: people">
+                            <li>
+                                <span><i class="icon-minus-sign"></i> {{_key}}</span>
+                                <ul ff-foreach="$data">
+                                    <li><span>{{_key}}: {{_value}}</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <h3>Future Features</h3>
+        <p>Firefight does not currently support nesting input or other elements that write to firebase inside ff-foreach.</p>
+        <h3>Other resources</h3>
+        <ul>
+            <li>What is that strange string node inside taskList? <a href="https://www.firebase.com/blog/2014-04-28-best-practices-arrays-in-firebase.html" target="window">See best practices arrays in firebase</a> </li>           
+        </ul>
+        <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    
+    
+    <script type="javascript">
+        debugger;
+            $("thead td").click(function() {
+                debugger;
+                console.log("so cool");
+            });
+    </sort>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>   
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ff-root attribute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        #ffSample2 a, #ffSample3 a {
+            display: block;
+        }
+        span.noWrap {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>ff-root</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>
+            The <span class="noWrap">ff-root</span> attribute connects a <a href="#" type="winodw">firebase</a> data set to your HTML.  <span class="noWrap">ff-root</span> is required for firefight to work.  Only child elements of <span class="noWrap">ff-root</span> are controlled by firefight. A web page can have only one <span class="noWrap">ff-root</span> attribute.
+            The <span class="noWrap">&lt;body ff-root="myAppName"></span> element is an excellent place for the <span class="noWrap">ff-root</span> attribute.
+        </p>
+
+        <h3>Sample: simple text</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint">&lt;div ff-root="ff-demo">
+  <span>{</span>{someValue}}
+&lt;/div>
+<span>{</span>{someValue}}
+</pre>
+            <h4>Result</h4>
+            <div id="ffSample"><div>{{someValue}}</div><span>{</span>{someValue}}</div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span>someValue: <input id="someValue" value="Get up and code." /></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p>Change "someValue" inside the firebase emulator, hit enter and notice how the result changes.  Notice how the second <span>{</span>{someValue}} doesn't get updated because it is not a child of <span class="noWrap">ff-root</span>.</p>
+        <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>

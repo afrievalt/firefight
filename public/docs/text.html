@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>adding text</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        b { color: red;}
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>Text</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>To add or update text in firebase, use an input or textarea tag with an id attribute.  Whenever the value is updated in firebase, the value on your web page will update too without even hitting refresh.  If the tags id does not exist in firebase, firefight will automatically add it to firebase.  HTML and firefight require all ids to be unique.</p>
+        
+        <h3>Sample: simple text</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample"></pre>
+            <h4>Result</h4>
+            <div id="ffSample"><input id="textToAdd"/></div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span>textToAdd: <input data-bind="value: textToAdd"/></span>                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p>Change "textToAdd" inside the firebase emulator, hit enter and notice how the result changes.  </p>
+        
+        <!--<h3>Sample: key stroke update</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="keystroke"></pre>
+            <h4>Result</h4>
+            <div id="keystroke"><input id="textToAdd1"/></div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span>textToAdd1: <input data-bind="value: textToAdd1"/></span>                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p> </p>
+        -->
+
+        <h3>Sample: multi line text</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="textarea"></pre>
+            <h4>Result</h4>
+            <div id="textarea"><textarea id="textToAdd2"></textarea></div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span>textToAdd2: <input data-bind="value: textToAdd2"/></span>                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p>textarea works just like input, but allows multiple lines.</p>
+        
+        <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>

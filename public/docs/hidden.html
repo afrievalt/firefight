@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>hidden type</title>
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        b { color: red;}
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>hidden</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>
+            With &lt;input type="hidden"> you can add or update values in firebase without displaying them to the user.  Beware, although this value is not seen on the end users screen, it is not difficult for someone to figure out the hidden value so do not put secure data here.
+            Whenever the value is updated in firebase, the value on your web page will updated too without even hitting refresh.  If the tags id does not exist in firebase, firefight will automatically add it to firebase.  HTML and firefight require all ids to be unique.
+        </p>
+        <p>
+            The atr-user optional attribute will set the hidden value to the current users data.  For example &lt;input id="currentUser" type="hidden" atr-usr="name"> will set <i>currentUser</i> to the <i>name</i> of the authenticated user.  If the user is not logged in, the value will be an empty string.
+            To use atr-user, the ff-login attribute must be present on the page.  For a complete list of valid values for atr-user, see <a href="ff-login.html">ff-login</a> documentation.  Please see <a href="../samples/simple-chat.html">simple-chat</a> for an example of this feature.
+        </p>
+
+        <h3>Sample: hidden result</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>
+<div id="ffSample2"><input type="hidden" id="hiddenResult"/>    
+    <button ff-set="hiddenResult=0">reset</button>
+    <a href="#" ff-set="hiddenResult+=1">plus one</a>
+    <a href="#" ff-set="hiddenResult-=1">minus one</a>
+    <a href="#" ff-set="hiddenResult*=2">times two</a>
+    <a href="#" ff-set="hiddenResult/=2">half</a>
+</div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li><span>hiddenResult: <input data-bind="value: hiddenResult" /></span></li>
+                </ul>
+            </div>
+
+        </div>
+        <h3>Future Features</h3>
+        <p>Firefight does not currently support nesting input or other elements that write to firebase inside ff-foreach.</p>
+        <h3>Other resources</h3>
+        <ul>
+            <li><a href="ff-set.html" target="window">ff-set</a></li>
+            <li><a href="../samples/simple-chat.html"window">sample-chat</a></li>
+            
+        </ul>
+        <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>   
+</body>
+</html>

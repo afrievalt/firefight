@@ -1,0 +1,80 @@
+/* ------------------------------- PHONE DEFAULT ------------------------------- */
+header {
+	margin: 2px;
+}
+
+.title {
+	background-color: white;
+	color: black;
+}
+
+#steps {
+	margin-bottom: 5px;
+}
+
+img#slide {
+    margin-top: 5px; 
+}
+
+img.url {height: 150px;}
+
+#error {
+	color: red;
+	list-style: none;
+}
+
+#samples a img {
+	
+	height: 25px;
+	width: 25px;
+}
+#samples button.code-pen {
+	margin: 0;
+	padding: 6px 20px;
+}
+#samples button.code-pen img {
+	margin-left: 15px;
+	height: 45px;
+	width: 45px;
+}
+
+.hr-row hr{
+	
+	margin-top: 8px;
+}
+
+.download-cell {
+	margin-top: 5px;
+}
+
+/* --------------------------------- TABLET CSS --------------------------------- */
+@media only screen and (min-width: 40.063em) {
+	
+.pen-cell {
+	margin-top: -12px;
+}
+	
+	
+.download-cell {
+	margin-top: 0px;
+}
+
+	
+	
+	
+	
+	
+	
+} /*end tablet*/
+
+/* --------------------------------- DESKTOP CSS --------------------------------- */
+@media only screen and (min-width: 64.063em) {
+.pen-cell {
+	margin-top: -12px;
+}
+.download-cell {
+	margin-top: 0px;
+}
+	
+	
+} /*end desktop*/

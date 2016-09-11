@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ff-submit attribute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        b { color: red;}
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+        <div class="loading">
+            Loading...
+        </div>
+    <div class="container">
+        <h1>ff-submit</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>The ff-submit attribute adds an event handler to send the forms field values as an object to the targeted array.</p>
+        <p>When you use the ff-submit attribute on a form, Firefight will prevent the browser’s default submit action for that form.</p>
+
+        <h3>Sample: list of objects</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>
+<div id="ffSample2"><ul ff-foreach="taskList">
+    <li>{{#if: important}}<b>!</b>&nbsp;{{/if}}{{taskName}} <a ff-populate-form="taskForm">update</a> <a ff-delete>remove</a></li>
+</ul>
+<form id="taskForm" ff-submit="taskList">
+    <label>Task Name: <input id="taskName" /></label>
+    <label>
+        <input id="important" type="checkbox"/> important
+    </label>
+    <button type="submit">Add Task</button>
+</form>
+</div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span><i class="icon-plus-sign"></i> taskList</span>
+                        <ul>
+                            {{#foreach: taskList.asArray()}}
+                            <li>
+                                <!--<span><i class="icon-plus-sign"></i> {{_id}}</span>-->
+                                <span><i class="icon-minus-sign"></i> {{_id}}</span>
+                                <ul>
+                                    <li><span>taskName: {{taskName}}</span></li>
+                                    <li><span>important: {{important}}</span></li>
+                                </ul>
+                            </li>
+                            {{/foreach: }}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <h3>Future Features</h3>
+        <p>Firefight does not currently support nesting input or other elements that write to firebase inside ff-foreach.</p>
+        <h3>Other resources</h3>
+        <ul>
+            <li>What is that strange string node inside taskList? <a href="https://www.firebase.com/blog/2014-04-28-best-practices-arrays-in-firebase.html" target="window">See best practices arrays in firebase</a> </li>
+            <li>Where can I learn more about <span>{</span>{#if}}? <a href="http://mbest.github.io/knockout.punches/">See Michael Best's knockout punches</a> </li>
+            <li>Can I use <span>{</span>{#foreach}} instead? Yes, but you must append .asArray() to binding name like this: <span>{</span>{#foreach: sample.asArray()}}</li>
+            <li>What is $data? <a href="http://knockoutjs.com/documentation/binding-context.html">See Knockout documentation binding context</a> </li>
+
+        </ul>
+        <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>select</title>
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        b { color: red;}
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>select</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>The &lt;select> element allows end user to select from a drop-down list.  Whenever the value is updated in firebase, the value on your web page will update too without even hitting refresh. If the select element id does not exist in firebase, firefight will automatically add it to firebase. HTML and firefight require all ids to be unique.</p>
+        
+        <h3>Sample: simple text</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample"></pre>
+            <h4>Result</h4>
+<div id="ffSample"><select id="selectedValue">
+    <option value="alpha">Alpha</option>
+    <option value="beta">Beta</option>
+    <option value="gamma">Gamma</option>
+</select>
+</div>  
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span>selectedValue: <input id="selectedValue"/></span>                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p>Select something from the drop-down list and notice the value in the Firebase emulator change.</p>
+        
+        <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>

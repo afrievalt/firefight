@@ -1,0 +1,177 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firefight js | Real-time, real easy</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png" sizes="32x32">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta name="description" content="Firefight.js makes real-time websites real easy.  Learn how to inject real-time data into your HTML in minutes by simply decorating your HTML.  FF uses Firebase, a no-sql database.">
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/override.css" />
+    <script src="js/vendor/modernizr.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="row">
+            <div class="large-12 columns">
+                <img src="img/ff.png"></img>
+                <strong>Firefight js</strong>
+                <span>Real-time, real easy</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="contain-to-grid sticky">
+        <nav class="top-bar" data-topbar role="navigation">
+
+            <ul class="title-area">
+                <li class="name"></li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span>MENU</span></a>
+                </li>
+            </ul>
+
+            <section class="top-bar-section">
+                <!-- Left Nav Section -->
+                <ul class="left">
+                    <li></li>
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="has-dropdown"><a href="#">Learn</a>
+                        <ul class="menu vertical dropdown">
+                            <li><a href="gettingstarted.html">Getting Started</a></li>
+                            <li><a href="docs.html">Documentation</a></li>
+                            <li><a href="samples.html">Samples</a></li>
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li class="divider"></li>
+                </ul>
+                
+                <!-- Right Nav Section -->
+                <ul class="right">
+                    <li class="divider"></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li class="divider"></li>
+                    <li><a href="https://github.com/afrievalt/firefight" target="_blank">Source</a></li>
+                </ul>
+            </section>
+
+        </nav>
+    </div>
+    <!-- end of Navigation -->
+
+    <div class="row">
+        <div class="large-12 columns">
+            <h1>Welcome to Firefight js</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="callout large">
+                <h2>Inject real-time data into your HTML in minutes.</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <h3>Required skills: <strong>HTML</strong></h3>
+        </div>
+        <div class="large-6 columns"><a href="gettingstarted.html" class="button round">Get started</a></div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            Firefight.js is a JavaScript library that allows non-JavaScript programmers to decorate their HTML to provide dynamic / real-time data from Firebase.  
+        </div>
+        <div class="large-12 columns">
+            <div class="callout large">
+            
+                <h3>How it works:</h3>
+                <p id="steps">
+                    Connect to your <a href='https://firebase.com' target='window'>firebase</a> data with ff-connect.  We will use somedbname in this example.
+       
+                </p>
+                <a href="#" id="prev">&nbsp;&nbsp;</a>
+                <span><span id="index">1</span>/6</span>
+                <a href="#" id="next">Next ></a>
+                <div>
+                    <img id="slide" src="img/hello_world08.jpg" alt="how to slide"/>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/foundation.min.js"></script>
+        <script>
+            $(document).foundation();
+            (function () {
+                var dom = {
+                    img: document.getElementById("slide"),
+                    index: document.getElementById("index"),
+                    next: document.getElementById("next"),
+                    prev: document.getElementById("prev"),
+                    steps: document.getElementById("steps")
+                };
+                index = 0;
+                var length = 5;
+                var images = ["img/hello_world08.jpg", "img/hello_world09.jpg", "img/hello_world10.jpg", "img/hello_world11.jpg", "img/hello_world12.jpg", "img/hello_world14.jpg"]
+                var steps = [
+                  "Connect to your <a href='https://firebase.com' target='window'>firebase</a> data with ff-connect.  We will use somedbname in this example.",
+                  "Access your data by surrounding the data key with handlebars {{greeting}}",
+                  "Change your firebase data ...",
+                  "...notice the greeting automatically updates.  No need to click refresh, it just woks.",
+                  "To add data, add a text box, and enter a value.",
+                  'The id (question) from your textbox becomes the key, the users input from the text box becomes value.<br/><a href="gettingstarted.html" class="button round">Get started</a>'];
+
+                /* Change your firebase data …
+                4/*notice the automatically update.  No need to click refresh, it just woks.
+                5/* To add data, add a text box, and enter a value.  
+                6/* The id from your textbox becomes the key, the users input from the text box becomes value.
+                */
+                dom.next.onclick = doNext;
+                function doNext() {
+                    index += 1;
+                    if (index > 6) {
+                        index = 0;
+                    }
+                    update();
+                    return false;
+                }
+                dom.prev.onclick = doPrev;
+                function doPrev() {
+                    index = index ? index - 1 : 0;
+                    update();
+                    return false;
+                }
+                function update() {
+                    if (index > length) {
+                        index = 0;
+                    }
+                    dom.next.innerHTML = (index === length) ? "Start over" : "Next >";
+                    dom.prev.innerHTML = index ? "&lt;" : "&nbsp;&nbsp;";
+                    dom.index.innerHTML = index + 1;
+                    dom.steps.innerHTML = steps[index];
+                    dom.img.setAttribute("src", images[index]);
+
+
+                }
+            })();
+    </script>
+        <div class="hide">
+            <img id="slide" src="img/hello_world08.jpg"></img>
+            <img id="slide" src="img/hello_world09.jpg"></img>
+            <img id="slide" src="img/hello_world10.jpg"></img>
+            <img id="slide" src="img/hello_world11.jpg"></img>
+            <img id="slide" src="img/hello_world12.jpg"></img>
+            <img id="slide" src="img/hello_world14.jpg"></img>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-framework="knockoutjs">
+
+<head>
+	<meta charset="utf-8">
+	<title>Firefight js • TodoMVC</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">	
+</head>
+
+<body ff-connect="nm-posting-plus" class="learn-bar loading">
+    <div class="loading">
+            Loading...
+        </div>
+	<aside class="learn">
+		<header>
+			<h3>Firefight js</h3> <span class="source-links">   <h5>Example</h5> <a href="https://github.com/afrievalt/firefight">Source</a></span>			</header>
+		<hr>
+		<blockquote class="quote speech-bubble">
+			<p>Firefight js is a JavaScript library that allows non-JavaScript programmers to decorate their HTML to provide dynamic / real-time data from Firebase.</p>
+			<footer> <a href="https://firefight.firebaseapp.com/">Firefight js</a> </footer>
+		</blockquote>
+		<hr>
+		<h4>Official Resources</h4>
+		<ul>
+			<li> <a href="https://firefight.firebaseapp.com/">Firefight js website</a> </li>
+			<li> <a href="https://firefight.firebaseapp.com/gettingstarted.html">Getting Started</a> </li>
+			<li> <a href="https://firefight.firebaseapp.com/docs.html">Documentation</a> </li>
+		</ul>		
+		<footer>
+			<hr> <em>If you have other helpful links to share, or find any of the links above no longer work, please <a href="https://github.com/tastejs/todomvc/issues">let us know</a>.</em>			</footer>
+	</aside>
+	<section id="todoapp">
+		<header id="header">
+			<h1>todos</h1>
+			<form ff-submit="todos">
+				<input id="completed" type="checkbox" class="hide" />
+				<input id="new-todo" atr-id="title" placeholder="What needs to be done?" autofocus>
+				<button class="hide" type="submit"></button>
+			</form>
+		</header>
+		<section id="main" ff-visible="todos">
+			<input id="toggle-all" ff-toggle="todos[completed]" type="checkbox">
+			<label for="toggle-all">Mark all as complete</label>
+			<ul ff-foreach="todos" id="todo-list">
+				<li ff-class="completed, #showActive, #showCompleted">
+					<div class="view" ff-class="_not-selected">
+						<input class="toggle" atr-id="completed" type="checkbox" />
+						<label class="edit-mode" ff-select atr-event="dblclick" >{{title}}</label>
+						<button class="destroy" ff-delete></button>
+					</div>
+					<div ff-class="_selected">
+						<input class="edit" atr-id="title" />
+					</div>
+				</li>
+			</ul>
+		</section>
+
+		<footer id="footer" ff-visible="todos">
+			<span id="todo-count" ff-totals="todos">
+					<strong ff-count="!completed" >0</strong>
+					left
+				</span>
+			<ul id="filters" ff-class="#showActive, #showCompleted">
+				<li>
+					<a href="#showAll" class="all">All</a>
+				</li>
+				<li>
+					<a ff-class="#showActive" href="#showActive">Active</a>
+				</li>
+				<li>
+					<a ff-class="#showCompleted" href="#showCompleted">Completed</a>
+				</li>
+			</ul>
+			<button id="clear-completed" ff-delete="todos[completed]">Clear completed</button>
+		</footer>
+	</section>
+	<footer id="info">
+		<p>Double-click to edit a todo</p>
+		<p>Written by <a href="https://www.linkedin.com/in/frievalt">Andy Frievalt</a></p>
+		<p>Forked from <a href="http://todomvc.com/examples/knockoutjs/">Knockout.js todomvc</a>,
+		sharing databse with <a href="http://todomvc.com/examples/firebase-angular/">Firebase + AngularJS</a>
+		</p>
+		<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+	</footer>
+	<script src="js/base.js"></script>
+	<script src="../../js/firefight-bundle.js"></script>
+	
+    <script src="js/base.js"></script>
+</body>
+
+</html>

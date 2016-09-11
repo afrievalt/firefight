@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ff-foreach attribute</title>
+<link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        b { color: red;}
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1><span>{</span>{handlesbars}}</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>Values inside firebase can be displayed in your web page by surrounding them with double curly braces <span>{</span>{firebaseValue}}.  Whenever the value is updated in firebase, the value on your web page will update too without even hitting refresh.  Firebase allows names to have spaces but firefight can't display them.  Node “firebase value” would not work.  <strong>Important:</strong> If the value inside the brackets does not exist, an error will occur causing other aspects of your web page not to work.  A value exists if it is in firebase or in an element like &lt;input>.</p>
+        
+        <h3>Sample: simple text</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample"></pre>
+            <h4>Result</h4>
+<div id="ffSample">{{someValue}}</div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span>someValue: <input id="someValue" value="Get up and code."/></span>                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p>Change "someValue" inside the firebase emulator, hit enter and notice how the result changes.  </p>
+        
+        <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>

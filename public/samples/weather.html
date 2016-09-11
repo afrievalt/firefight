@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/doc.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <link href="../css/prettify.css" rel="stylesheet" />
+    <style>
+        b { color: red;}
+    </style>
+</head>
+<body >
+    <div class="container">
+        <h1>Weather</h1>
+        <a href="../samples.html">< Back To Samples</a>                
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>
+<div id="ffSample2"><div ff-connect="publicdata-weather" atr-root="milwaukee/currently">
+    <h3>Current Milwaukee Weather</h3>
+    
+        <div>{{summary}}</div>
+        <div>Temperature: {{temperature}}</div>
+        <div>Wind Speed: {{windSpeed}}</div>        
+    
+</div>
+</div>
+            <h4>Firebase data</h4>
+            <a href="https://publicdata-weather.firebaseio.com/" target="_blank">click here</a> to see the Firebase data
+    </div>
+    <h5>Firebase Open Data Sets are deprecated and no longer realtime.</h5>
+
+        <a href="../samples.html">< Back To Samples</a>
+    </div>
+    
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+    
+
+
+    
+</body>
+</html>
+

@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ff-set attribute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        #ffSample2 a, #ffSample3 a {
+            display: block;
+        }
+    </style>
+</head>
+<body ff-connection="torid-fire-5369"> /*need torid-fire to coonect to facebook*/
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>ff-set</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>The ff-set attribute allows an end user to set a value when clicking a element, typically used with &lt;a> and &lt;button> elements.  <strong>Important:</strong>  If the target value does not exist, an error will occur causing other aspects of your web page not to work.  A value exists if it is in firebase or in an element like &lt;input>.</p>
+
+        <h3>Sample: setting numeric values</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>
+            <div id="ffSample2">
+                {{myValue}}
+                <button ff-set="myValue=0">reset</button>
+                <a href="#" ff-set="myValue+=1">plus one</a>
+                <a href="#" ff-set="myValue-=1">minus one</a>
+                <a href="#" ff-set="myValue*=2">times two</a>
+                <a href="#!" ff-set="myValue/=2">half</a>
+                <a href="#" ff-login="facebook">facebook login</a>
+                <a href="#" ff-set="vote{{_user.id}}='Up'">half</a>
+            </div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li><span>myValue: <input data-bind="value: myValue" /></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <p>Click the above links and notice the value change in the Firebase emulator. <a href="https://www.firebase.com/docs/security/" target="window">Firebase's security</a> prevents myValue from being set to a non-number.  </p>
+        <h3>Sample: setting text</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample3"></pre>
+            <h4>Result</h4>
+            <div id="ffSample3">
+                <div>{{setText}}</div>
+                <button ff-set="setText='alpha'">alpha</button>
+                <button ff-set="setText='beta'">beta</button>
+            </div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li><span>setText: <input data-bind="value: setText" /></span></li>
+                </ul>
+            </div>
+        </div>
+        <p>Click the above buttons and notice the value change in the Firebase emulator. <a href="https://www.firebase.com/docs/security/" target="window">Firebase's security</a> prevents setText from being set to anything but alpha or beta.  </p>
+
+        <h4>Result</h4>
+        <div id="ffSample3">
+            <a href="#" ff-login="facebook">facebook login</a>
+            <a href="#" ff-set="vote{{_user().id}}='up'">up</a>
+            <a href="#" ff-set="vote{{_user().id}}='down'">down</a>
+        
+            <div ff-totals="vote">
+                <div ff-count="up"></div>
+                <div ff-count="down">
+                </div>
+            </div>        
+        
+        
+        <h4>Firebase emulator</h4>
+        <div class="tree">
+            <ul>
+                <li>
+                    <ul data-bind="ffForEachObject: vote">
+                        <li>
+                            {{_key}}:  {{_value}}
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>

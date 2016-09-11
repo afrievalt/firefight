@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ff-set attribute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>>
+    <div class="container">
+        <h1>ff-delete</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>
+            The ff-delete attribute allows an end user to delete a value from a list.
+
+            <!--<strong>Important:</strong>  If the target value does not exist, an error will occur causing other aspects of your web page not to work.  A value exists if it is in firebase or in an element like &lt;input>.-->
+        </p>
+
+        <h3>Sample: delete</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>
+            <div id="ffSample2"><ul ff-foreach="taskList">
+    <li>{{taskName}} {{_key}}<a ff-delete>remove</a></li>
+</ul></div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <span><i class="icon-plus-sign"></i> taskList</span>
+                        <ul ff-foreach="taskList">                            
+                            <li>                                
+                                <span><i class="icon-minus-sign"></i> {{_key}}</span>
+                                <ul>
+                                    <li><span>taskName: {{taskName}}</span></li>
+                                    <li><span>important: {{important}}</span></li>
+                                </ul>
+                            </li>                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p>Click the above links and notice the value change in the Firebase emulator. <a href="https://www.firebase.com/docs/security/" target="window"></p>
+        <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>

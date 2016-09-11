@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>computed observables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        #ffSample2 a, #ffSample3 a {
+            display: block;
+        }
+    </style>
+</head>
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>ff-set</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p></p>
+        
+        <h3>Sample: computedObservables</h3>
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>
+            <script src="../js/lib/knockout-3.2.0.js"></script>
+<div id="ffSample2">{{myValue}} {{$fizzbuzz$}}
+<button  ff-set="myValue=0">reset</button>
+<a ff-set="myValue+=1">plus one</a>
+<a ff-set="myValue-=1">minus one</a>
+<a ff-set="myValue*=2">times two</a>
+<a ff-set="myValue/=2">half</a>
+<script>
+    var ff = ff || {};
+    ff.computedObservables = {
+        fizzbuzz: function () {
+            var val = this.myValue();
+            var result = val % 3 ? "" : "fizz";
+            result += val % 5 ? "" : "buzz";
+            return (val && result) || val;
+        }
+    };    
+</script>
+            </div>
+            <h4>Firebase emulator</h4>
+            <div class="tree">
+                <ul>
+                    <li><span>myValue: <input data-bind="value: myValue" /></span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <a href="../docs.html">< Back To DOCS</a>
+    </div>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>

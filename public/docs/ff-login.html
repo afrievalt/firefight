@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ff-login attribute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="../css/tree.css" rel="stylesheet" />
+    <style>
+        b {
+            color: red;
+        }
+    </style>
+</head>
+<body ff-root="torid-fire-5369">
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>ff-login</h1>
+        <a href="../docs.html">< Back To DOCS</a>
+        <h3>Purpose</h3>
+        <p>
+            ff-login attribute allows end users to authenticate.  When ff-login attribute is added to a web page, a special value, _user is added to the root of the view model  exposing information about the authenticated user.  _user values are accessible in the web page, but not saved in Firebase.
+        </p>
+        <p>
+            To use this feature, you must will need to create a <a href="https://developers.facebook.com/apps">Facebook application</a>  and configure your <a href="https://www.firebase.com/docs/web/guide/login/facebook.html">firebase application</a>.  This process will take about 10 minutes.
+        </p>        
+        <div class="well">
+            <h4>HTML</h4>
+            <pre class="prettyprint" code-example="ffSample2"></pre>
+            <h4>Result</h4>
+            <div id="ffSample2"><a href="#" ff-login="facebook">login</a> with facebook.
+<div ff-with="_user">
+    <div>firstName: {{firstName}}</div>
+    <div>lastName: {{lastName}}</div>
+    <div>name: {{name}}</div>
+    <div>imgUrl: {{imgUrl}}</div>
+    <div>timezone: {{timezone}}</div>
+    <div>ageMin: {{ageMin}}</div>
+    <div>gender: {{gender}}</div>
+    <div>id: {{id}}</div>
+    <div>link: {{link}}</div>
+    <div>locale: {{locale}}</div>
+    <div>isImgSilhouette: {{isImgSilhouette}}</div>                    
+</div></div>
+            
+            
+    </div>
+    <p>
+        See <a href="https://www.firebase.com/docs/security/guide/securing-data.html">firebase documentation</a> for more information about securing your data.
+    </p>
+    <p>
+        Currently Firefight only supports Facebook authentication.   Firebase supports the following Authentication Providers: Custom, Email & Password, Anonymous, Facacebook, Twitter, GetHub and Google.  Future version of firefight may also support other authentication providers
+    </p>
+    <p>
+        See <a href="../samples/simple-chat.html">simple chat sample</a> for another example.
+    </p>
+    <a href="../docs.html">< Back To DOCS</a>
+    <script src="../js/firefight-bundle.js" data-doc-help></script>
+</body>
+</html>
