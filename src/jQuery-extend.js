@@ -6,6 +6,10 @@ console.log("jQuery-extend.js");
 
 //$ extentions
 jQuery.fn.extend({
+    hasAttr: function(attr) {
+        let $this = $(this); 
+        return !_.isUndefined($this.attr(attr))
+    },
     reset: function () {
         var $form = this;
         var elm = $form[0];

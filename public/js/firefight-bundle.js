@@ -78,6 +78,10 @@
 	
 	//$ extentions
 	_jquery2.default.fn.extend({
+	    hasAttr: function hasAttr(attr) {
+	        var $this = $(this);
+	        return !_utility2.default.isUndefined($this.attr(attr));
+	    },
 	    reset: function reset() {
 	        var $form = this;
 	        var elm = $form[0];
@@ -10049,7 +10053,7 @@
 	    //return {listTarget: 'listTarget', parameterTarget:'parameterTarget'}
 	    parseListTokens: function parseListTokens(content) {
 	        //consider using regex
-	        var parts = content && content.split(']'); //"x[y]=1" => ['x[y', '1']
+	        var parts = content && content.split(']'); //"x[y]=1" => ['x[y', '=1']
 	        parts = parts.length && parts[0].split('['); // 'x[y' => ['x', 'y']
 	        if (parts.length === 2) {
 	            return {
@@ -16197,6 +16201,10 @@
 	
 	var _utility2 = _interopRequireDefault(_utility);
 	
+	var _extentions = __webpack_require__(/*! ./extentions.js */ 15);
+	
+	var _extentions2 = _interopRequireDefault(_extentions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var $ = _jquery2.default;
@@ -16217,7 +16225,9 @@
 	        var CR = 13; //carrage return
 	        //var listId = _.unwrapValueAccessor(valueAccessor);
 	        var listId = _knockout2.default.contextFor(element).$listId;
+	        var $elm = $(element);
 	        var valueBinding, orgValue;
+	
 	        if (listId) {
 	            valueBinding = allBindings().value; //we grab the value binding as in data-bind="value: something"
 	            $(element).keypress(handleReturn);
@@ -16227,8 +16237,19 @@
 	
 	        function handleReturn(e) {
 	            if (e.which === LF || e.which === CR) {
+	                var newVal = $elm.val();
 	                unselect();
-	                $(element).blur(); //force blur for ie 
+	                console.log("in return");
+	
+	                if ($elm.hasAttr("atr-trim") && valueBinding) {
+	                    newVal = newVal.trim();
+	                    valueBinding(newVal);
+	                }
+	                //delete if empty
+	                if (newVal === "") {
+	                    $elm.next("[atr-empty]").click();
+	                }
+	                $elm.blur(); //force blur for ie 
 	            }
 	        }
 	
@@ -16470,7 +16491,6 @@
 	    ff.fb.on('value', function (data) {
 	        var property;
 	        var val = data.val() || {};
-	        console.log("in main On");
 	        setOrUpdateViewModel(ff.vm, val);
 	
 	        applyBindingsOnce();
@@ -16512,7 +16532,6 @@
 	            connectionType: ff.$root.attr('atr-connectionType'),
 	            allowAnonymous: ff.$root.attr('atr-allowAnonymous'),
 	            setupDocumentationPage: ff.$root.attr('atr-docHelp')
-	
 	        };
 	        ff.fb = new _firebase2.default("https://" + fbName + ".firebaseio.com");
 	        (0, _koExtenders2.default)(ff.fb);
@@ -18442,6 +18461,10 @@
 	
 	var _knockoutMapping2 = _interopRequireDefault(_knockoutMapping);
 	
+	var _utility = __webpack_require__(/*! ./utility.js */ 3);
+	
+	var _utility2 = _interopRequireDefault(_utility);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function setupKoExtenders(firebase) {
@@ -18471,6 +18494,35 @@
 	    _knockout2.default.extenders.path = function (target, options) {
 	        target.path = options;
 	        return target;
+	    };
+	
+	    _knockout2.default.extenders.trim = function (target, options) {
+	        //todo: handle none, left, right trim
+	        var result = _knockout2.default.pureComputed({
+	            read: target, //always return the original observables value
+	            write: function write(newValue) {
+	                target(newValue);
+	                var current = target();
+	                var valueToWrite = newValue.trim && newValue.trim();
+	                if (_utility2.default.isUndefined(valueToWrite)) {
+	                    return;
+	                }
+	
+	                //only write if it changed
+	                if (valueToWrite !== current) {
+	                    target(valueToWrite);
+	                } else if (newValue !== current) {
+	                    //if the trimed value is the same, but a different value was written, force a notification for the current field
+	                    target.notifySubscribers(valueToWrite);
+	                }
+	            }
+	        }).extend({ notify: 'always' });
+	
+	        //initialize with current value to make sure it is rounded appropriately
+	        result(target());
+	
+	        //return the new computed observable
+	        return result;
 	    };
 	
 	    _knockout2.default.extenders.type = function (target, options) {
@@ -19101,8 +19153,8 @@
 	                    oldList(newList);
 	                    return;
 	                }
-	                var list = $this.parent().closest("[ff-foreach]").attr("ff-foreach");
-	                var idToDelete = $this.data("keytoremove");
+	                var list = bindingContext.$parentContext.$listId;
+	                var idToDelete = bindingContext.$data._key;
 	                //if there is only one item in the list, we must clear the vm's list because the vm will not get updated when data is null.
 	                //this may be fixed if we create a _meta tag in the db
 	                var listVm = bindingContext.$parent && bindingContext.$parent[list];
@@ -19118,7 +19170,7 @@
 	                    return;
 	                }
 	                _utility2.default.addDataBind($elm, this.binding, "$parent.deleteFromList");
-	                _utility2.default.addDataBind($elm, "attr", "{'data-keytoremove': _key}");
+	                // todo: remove all keytoremvoe and use $data._key     _.addDataBind($elm, "attr", "{'data-keytoremove': _key}");
 	            }
 	        },
 	        'select': {
@@ -19376,11 +19428,16 @@
 	        '_default': {
 	            init: function init(elm) {
 	                var $elm = $(elm);
+	                var trim = $elm.attr("atr-trim");
+	                if (!_utility2.default.isUndefined(trim)) {
+	                    $elm.data('_trim', true);
+	                }
 	                $elm.data('_ffBindTarget', $elm.attr('atr-id') || $elm.attr('id'));
 	            },
 	            defaultValue: "",
 	            vmSetup: function vmSetup($elm, vm, child) {
 	                var id = $elm.data('_ffBindTarget');
+	                var trim = $elm.data('_trim');
 	                var self = this;
 	                var value;
 	                if (!id) return;
@@ -19388,13 +19445,17 @@
 	                    value = $elm.attr("value") || self.defaultValue;
 	                    vm[id] = _knockout2.default.observable(value);
 	                }
-	                if (child) {
-	                    //vm[id].extend({ save: id });
 	
+	                if (child) {
+	                    //sets up a subscription and needs to be called once so ok to not reassign the observable, but this is not equivalent to: foo = ko.obseverable().extend({});
 	                    vm[id].extend({ save: id });
 	                }
-	                vm[id].extend({ save: id });
-	                console.log("id: ", id);
+	
+	                if (trim) {
+	                    //sets up a pure Observable function and needs to be equivelent to : foo = ko.obseverable().extend({});
+	                    vm[id] = vm[id].extend({ trim: true });
+	                }
+	
 	                _utility2.default.setupType($elm, vm[id]);
 	            },
 	            id: _utility2.default.empty,

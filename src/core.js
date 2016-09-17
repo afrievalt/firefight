@@ -26,9 +26,8 @@ ff.nextId = 0;
     ff.fb.on('value', function (data) {
         var property;
         var val = data.val() || {};
-        console.log("in main On");
         setOrUpdateViewModel(ff.vm, val);
-
+        
         applyBindingsOnce();
     });
 
@@ -67,8 +66,7 @@ ff.nextId = 0;
         ff.options = {
             connectionType: ff.$root.attr('atr-connectionType'),
             allowAnonymous: ff.$root.attr('atr-allowAnonymous'),
-            setupDocumentationPage: ff.$root.attr('atr-docHelp'),
-
+            setupDocumentationPage: ff.$root.attr('atr-docHelp')
         };
         ff.fb = new Firebase("https://" + fbName + ".firebaseio.com");
         setupKoExtenders(ff.fb);

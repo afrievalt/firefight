@@ -1,5 +1,6 @@
 import ko from 'knockout'
 import mapping from 'knockout-mapping'
+import _ from './utility.js'
 
 export default function setupKoExtenders(firebase) {
     //ko extentions
@@ -30,6 +31,36 @@ export default function setupKoExtenders(firebase) {
         return target;
     };
 
+    ko.extenders.trim = function(target, options) {
+        //todo: handle none, left, right trim
+        var result = ko.pureComputed({
+            read: target,  //always return the original observables value
+            write: function(newValue) {
+                target(newValue);
+                let current = target();
+                let valueToWrite = newValue.trim && newValue.trim();
+                if(_.isUndefined(valueToWrite)){
+                    return;
+                }
+
+                //only write if it changed
+                if (valueToWrite !== current) {
+                    target(valueToWrite);
+                } else if (newValue !== current) {
+                    //if the trimed value is the same, but a different value was written, force a notification for the current field
+                    target.notifySubscribers(valueToWrite);
+                }
+            }
+        }).extend({ notify: 'always' });
+
+        //initialize with current value to make sure it is rounded appropriately
+        result(target());
+
+        //return the new computed observable
+        return result;
+
+    };
+   
     ko.extenders.type = function(target, options) {
         if (options === 'number') {
             //create a writable computed observable to intercept writes to our observable

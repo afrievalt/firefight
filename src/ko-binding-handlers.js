@@ -1,6 +1,8 @@
 import ko from 'knockout'
 import jQuery from 'jquery'
 import _ from './utility.js'
+import getExtentions from './extentions.js'
+
 let $ = jQuery;
 
 ko.bindingHandlers.ffEvent = {
@@ -19,7 +21,9 @@ ko.bindingHandlers.ffInlineUpdate = {
         var CR = 13; //carrage return
         //var listId = _.unwrapValueAccessor(valueAccessor);
         var listId = ko.contextFor(element).$listId;
+        let $elm = $(element);
         var valueBinding, orgValue;
+
         if (listId) {
             valueBinding = allBindings().value;  //we grab the value binding as in data-bind="value: something"
             $(element).keypress(handleReturn);
@@ -29,8 +33,20 @@ ko.bindingHandlers.ffInlineUpdate = {
 
         function handleReturn(e) {
             if (e.which === LF || e.which === CR) {
+                let newVal = $elm.val();
                 unselect();
-                $(element).blur(); //force blur for ie 
+                console.log("in return");
+
+                if ($elm.hasAttr("atr-trim") && valueBinding) {
+                    newVal = newVal.trim()
+                    valueBinding(newVal);
+
+                }
+                //delete if empty
+                if (newVal === "") {
+                    $elm.next("[atr-empty]").click();
+                }
+                $elm.blur(); //force blur for ie 
             }
         }
 
@@ -65,7 +81,7 @@ ko.bindingHandlers.ffChangeEvent = {
 ko.bindingHandlers.ffSubmit = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         ko.utils.registerEventHandler(element, "submit", function (event) {
-            if (event.preventDefault){  
+            if (event.preventDefault) {
                 event.preventDefault();  //prevent site from submitting
             }
             console.log("in ffSubmit");

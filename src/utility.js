@@ -16,7 +16,7 @@ const _ = {
     //return {listTarget: 'listTarget', parameterTarget:'parameterTarget'}
     parseListTokens: function (content) {
         //consider using regex
-        var parts = content && content.split(']'); //"x[y]=1" => ['x[y', '1']
+        var parts = content && content.split(']'); //"x[y]=1" => ['x[y', '=1']
         parts = parts.length && parts[0].split('['); // 'x[y' => ['x', 'y']
         if (parts.length === 2) {
             return {

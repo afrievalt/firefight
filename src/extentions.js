@@ -1,7 +1,9 @@
 import ko from 'knockout'
 import mapping from 'knockout-mapping'
 import jQuery from 'jquery'
-import _ from './utility.js'
+
+import _ from './utility.js';
+
 let $ = jQuery;
 
 export default function getExtentions(ff) {
@@ -557,8 +559,8 @@ export default function getExtentions(ff) {
                     oldList(newList);
                     return;
                 }
-                var list = $this.parent().closest("[ff-foreach]").attr("ff-foreach");
-                var idToDelete = $this.data("keytoremove");
+                var list = bindingContext.$parentContext.$listId;
+                var idToDelete = bindingContext.$data._key;
                 //if there is only one item in the list, we must clear the vm's list because the vm will not get updated when data is null.
                 //this may be fixed if we create a _meta tag in the db
                 var listVm = bindingContext.$parent && bindingContext.$parent[list];
@@ -574,7 +576,7 @@ export default function getExtentions(ff) {
                     return;
                 }
                 _.addDataBind($elm, this.binding, "$parent.deleteFromList");
-                _.addDataBind($elm, "attr", "{'data-keytoremove': _key}");
+                // todo: remove all keytoremvoe and use $data._key     _.addDataBind($elm, "attr", "{'data-keytoremove': _key}");
             },
         },
         'select': {
@@ -830,26 +832,35 @@ export default function getExtentions(ff) {
         },
         '_default': {
             init: function (elm) {
-                var $elm = $(elm);
+                let $elm = $(elm);
+                let trim = $elm.attr("atr-trim");
+                if(!_.isUndefined(trim)) {
+                    $elm.data('_trim', true);
+                }             
                 $elm.data('_ffBindTarget', $elm.attr('atr-id') || $elm.attr('id'));
             },
             defaultValue: "",
             vmSetup: function ($elm, vm, child) {
                 var id = $elm.data('_ffBindTarget');
-                var self = this;
+                let trim = $elm.data('_trim');
+                var self = this;                
                 var value;
                 if (!id) return;
                 if (!vm[id]) {
                     value = $elm.attr("value") || self.defaultValue;
-                    vm[id] = ko.observable(value)
+                    vm[id] = ko.observable(value);                                    
                 }
+                
                 if (child) {
-                    //vm[id].extend({ save: id });
-
-                    vm[id].extend({ save: id });
+                  //sets up a subscription and needs to be called once so ok to not reassign the observable, but this is not equivalent to: foo = ko.obseverable().extend({});
+                  vm[id].extend({ save: id });  
                 }
-                vm[id].extend({ save: id });
-                console.log("id: ", id);
+                
+                if(trim){
+                  //sets up a pure Observable function and needs to be equivelent to : foo = ko.obseverable().extend({});
+                  vm[id] = vm[id].extend({ trim: true })                    
+                }                
+                
                 _.setupType($elm, vm[id]);
             },
             id: _.empty,

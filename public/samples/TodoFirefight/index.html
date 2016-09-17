@@ -35,7 +35,7 @@
 			<h1>todos</h1>
 			<form ff-submit="todos">
 				<input id="completed" type="checkbox" class="hide" />
-				<input id="new-todo" atr-id="title" placeholder="What needs to be done?" autofocus>
+				<input id="new-todo" atr-id="title" atr-trim placeholder="What needs to be done?" autofocus>
 				<button class="hide" type="submit"></button>
 			</form>
 		</header>
@@ -50,7 +50,8 @@
 						<button class="destroy" ff-delete></button>
 					</div>
 					<div ff-class="_selected">
-						<input class="edit" atr-id="title" />
+						<input class="edit" atr-trim atr-id="title" />
+						<button class="hide" atr-empty ff-delete></button>
 					</div>
 				</li>
 			</ul>
