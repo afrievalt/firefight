@@ -16601,6 +16601,10 @@
 	        });
 	    }
 	})();
+	
+	//usefull for debugging 
+	window.ko = _knockout2.default;
+	window.ff = ff;
 
 /***/ },
 /* 10 */
@@ -18572,6 +18576,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	
 	exports.default = getExtentions;
 	
 	var _knockout = __webpack_require__(/*! knockout */ 4);
@@ -19199,35 +19206,73 @@
 	        'toggle': {
 	            init: function init(elm, content, tokens) {
 	                var resultTokens = _utility2.default.extend({}, tokens, _utility2.default.parseListTokens(content));
-	                resultTokens.toggleState = false;
 	                return resultTokens;
 	            },
 	            extend: '_default',
 	            binding: 'ffEvent',
-	            vmSetup: function vmSetup($elm, vm) {
+	            vmSetup: function vmSetup($elm, vm, child, tokens) {
+	                var listTarget = tokens.listTarget;
+	                var parameterTarget = tokens.parameterTarget;
+	
 	                ff.vm.$toggle = extentions.toggle.event;
+	
+	                if (listTarget) {
+	
+	                    //todo: dry up with count
+	                    ff.vm['$toggle_count_' + listTarget + '_' + parameterTarget] = _knockout2.default.computed(function () {
+	                        var unwrappedValue = _knockout2.default.utils.unwrapObservable(vm[listTarget]);
+	                        unwrappedValue = _utility2.default.objectToArray(unwrappedValue);
+	                        if (unwrappedValue && unwrappedValue.length) {
+	                            return unwrappedValue.reduce(function (total, obj) {
+	                                //unwind doesn't triger change for computed observable 
+	                                //var shouldCount = _.unwind(obj, result.condition);
+	                                var unwrappedObject = _utility2.default.unwrap(obj);
+	                                var shouldCount = !(unwrappedObject[parameterTarget] && _utility2.default.unwrap(unwrappedObject[parameterTarget]));
+	                                return total + (shouldCount ? 1 : 0);
+	                            }, 0);
+	                        }
+	                    });
+	                    //todo: use id if there, test w id
+	                    ff.vm['$toggleState' + listTarget] = _knockout2.default.computed({
+	                        //always return true/false based on the done flag of all todos
+	                        read: function read() {
+	                            return !ff.vm['$toggle_count_' + listTarget + '_' + parameterTarget]();
+	                        },
+	                        // set all todos to the written value (true/false)
+	                        write: _utility2.default.empty //do nothing, handled in event
+	                    });
+	                }
 	            },
 	            event: function event(valueAccessor, allBindings, viewModel, bindingContext) {
 	                var $this = $(this);
 	                var tokens = $this.data("_ffTokens");
+	                var listTarget = tokens.listTarget;
+	                var parameterTarget = tokens.parameterTarget;
+	
 	                var list;
-	                if (tokens && tokens.listTarget) {
-	                    var toggleValue = function toggleValue(elm) {
-	                        var listItem = _utility2.default.unwrap(elm);
-	                        if (_utility2.default.isUndefined(listItem) && _utility2.default.isFunciton(listItem[tokens.parameterTarget])) {
-	                            console.warn("Property " + tokens.listColumTest + " not found in  " + tokens.parameterTarget);
+	                if (listTarget) {
+	                    var _ret = function () {
+	                        var toggleValue = function toggleValue(elm) {
+	                            var listItem = _utility2.default.unwrap(elm);
+	                            if (_utility2.default.isUndefined(listItem) && _utility2.default.isFunciton(listItem[parameterTarget])) {
+	                                console.warn("Property " + parameterTarget + " not found in  " + parameterTarget);
+	                                return true;
+	                            }
+	                            //todo: get path so this works in deep paths
+	                            listItem[parameterTarget](nextState);
 	                            return true;
-	                        }
-	                        //todo: get path so this works in deep paths
-	                        listItem[tokens.parameterTarget](tokens.toggleState);
-	                        return true;
-	                    };
+	                        };
 	
-	                    tokens.toggleState = !tokens.toggleState;
-	                    list = bindingContext.$data[tokens.listTarget];
-	                    _utility2.default.filterObject(list(), toggleValue);
+	                        var nextState = !!bindingContext.$root['$toggle_count_' + listTarget + '_' + parameterTarget]();
+	                        list = bindingContext.$data[tokens.listTarget];
+	                        _utility2.default.filterObject(list(), toggleValue);
 	
-	                    return;
+	                        return {
+	                            v: void 0
+	                        };
+	                    }();
+	
+	                    if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
 	                }
 	                var target = $this.attr("ff-toggle");
 	                var observable = viewModel[target];
@@ -19235,7 +19280,12 @@
 	                    observable(!observable());
 	                }
 	            },
-	            addDataBind: function addDataBind($elm) {
+	            addDataBind: function addDataBind($elm, tokens) {
+	                var listTarget = tokens.listTarget;
+	
+	                if (listTarget) {
+	                    _utility2.default.addDataBind($elm, "checked", '$root.$toggleState' + listTarget);
+	                }
 	                _utility2.default.addDataBind($elm, this.binding, "$root.$toggle");
 	            }
 	        },

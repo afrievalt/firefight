@@ -139,5 +139,10 @@ ff.nextId = 0;
             $elm.ffAddDataBind(tokens);
         });
     }
+
+    
 })();
 
+//usefull for debugging 
+window.ko = ko;
+window.ff = ff;

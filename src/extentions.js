@@ -363,7 +363,7 @@ export default function getExtentions(ff) {
                 $elm.data("_ffBindTarget", "count_" + result.condition);
                 result.bindTarget = "count_" + result.condition;
                 result.listTarget = $totals.attr("ff-totals");
-
+                                
                 return result;
             },
             extend: '_default',
@@ -607,30 +607,59 @@ export default function getExtentions(ff) {
                 var resultTokens = _.extend({}, tokens,
                     _.parseListTokens(content)
                 );
-                resultTokens.toggleState = false;
                 return resultTokens;
             },
             extend: '_default',
             binding: 'ffEvent',
-            vmSetup: function vmSetup($elm, vm) {
+            vmSetup: function vmSetup($elm, vm, child, tokens) {
+                let {listTarget, parameterTarget} = tokens;
                 ff.vm.$toggle = extentions.toggle.event;
+
+                if (listTarget) {
+
+
+                    //todo: dry up with count
+                    ff.vm[`$toggle_count_${listTarget}_${parameterTarget}`] = ko.computed(function () {
+                        var unwrappedValue = ko.utils.unwrapObservable(vm[listTarget]);
+                        unwrappedValue = _.objectToArray(unwrappedValue);
+                        if (unwrappedValue && unwrappedValue.length) {
+                            return unwrappedValue.reduce(function (total, obj) {
+                                //unwind doesn't triger change for computed observable 
+                                //var shouldCount = _.unwind(obj, result.condition);
+                                var unwrappedObject = _.unwrap(obj);
+                                var shouldCount = !(unwrappedObject[parameterTarget] && _.unwrap(unwrappedObject[parameterTarget]));
+                                return total + (shouldCount ? 1 : 0);
+                            }, 0);
+                        }
+                    });
+                    //todo: use id if there, test w id
+                    ff.vm[`$toggleState${listTarget}`] = ko.computed({
+                        //always return true/false based on the done flag of all todos
+                        read: function () {
+                            return !ff.vm[`$toggle_count_${listTarget}_${parameterTarget}`]();
+                        },
+                        // set all todos to the written value (true/false)
+                        write: _.empty //do nothing, handled in event
+                    });
+                }
             },
             event: function event(valueAccessor, allBindings, viewModel, bindingContext) {
                 var $this = $(this);
                 var tokens = $this.data("_ffTokens");
+                let {listTarget, parameterTarget} = tokens;
                 var list;
-                if (tokens && tokens.listTarget) {
-                    tokens.toggleState = !tokens.toggleState;
+                if (listTarget) {
+                    let nextState = !!bindingContext.$root[`$toggle_count_${listTarget}_${parameterTarget}`]();
                     list = bindingContext.$data[tokens.listTarget];
                     _.filterObject(list(), toggleValue);
                     function toggleValue(elm) {
                         var listItem = _.unwrap(elm);
-                        if (_.isUndefined(listItem) && _.isFunciton(listItem[tokens.parameterTarget])) {
-                            console.warn("Property " + tokens.listColumTest + " not found in  " + tokens.parameterTarget);
+                        if (_.isUndefined(listItem) && _.isFunciton(listItem[parameterTarget])) {
+                            console.warn("Property " + parameterTarget + " not found in  " + parameterTarget);
                             return true;
                         }
                         //todo: get path so this works in deep paths
-                        listItem[tokens.parameterTarget](tokens.toggleState);
+                        listItem[parameterTarget](nextState);
                         return true;
                     }
                     return;
@@ -641,7 +670,11 @@ export default function getExtentions(ff) {
                     observable(!observable());
                 }
             },
-            addDataBind: function ($elm) {
+            addDataBind: function ($elm, tokens) {                
+                let {listTarget} = tokens;
+                if (listTarget) {
+                    _.addDataBind($elm, "checked", `$root.$toggleState${listTarget}`);
+                }
                 _.addDataBind($elm, this.binding, "$root.$toggle");
             },
         },
@@ -834,33 +867,33 @@ export default function getExtentions(ff) {
             init: function (elm) {
                 let $elm = $(elm);
                 let trim = $elm.attr("atr-trim");
-                if(!_.isUndefined(trim)) {
+                if (!_.isUndefined(trim)) {
                     $elm.data('_trim', true);
-                }             
+                }
                 $elm.data('_ffBindTarget', $elm.attr('atr-id') || $elm.attr('id'));
             },
             defaultValue: "",
             vmSetup: function ($elm, vm, child) {
                 var id = $elm.data('_ffBindTarget');
                 let trim = $elm.data('_trim');
-                var self = this;                
+                var self = this;
                 var value;
                 if (!id) return;
                 if (!vm[id]) {
                     value = $elm.attr("value") || self.defaultValue;
-                    vm[id] = ko.observable(value);                                    
+                    vm[id] = ko.observable(value);
                 }
-                
+
                 if (child) {
-                  //sets up a subscription and needs to be called once so ok to not reassign the observable, but this is not equivalent to: foo = ko.obseverable().extend({});
-                  vm[id].extend({ save: id });  
+                    //sets up a subscription and needs to be called once so ok to not reassign the observable, but this is not equivalent to: foo = ko.obseverable().extend({});
+                    vm[id].extend({ save: id });
                 }
-                
-                if(trim){
-                  //sets up a pure Observable function and needs to be equivelent to : foo = ko.obseverable().extend({});
-                  vm[id] = vm[id].extend({ trim: true })                    
-                }                
-                
+
+                if (trim) {
+                    //sets up a pure Observable function and needs to be equivelent to : foo = ko.obseverable().extend({});
+                    vm[id] = vm[id].extend({ trim: true })
+                }
+
                 _.setupType($elm, vm[id]);
             },
             id: _.empty,
