@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="css/index.css">	
 </head>
 
-<body ff-connect="nm-posting-plus" class="learn-bar loading">
+<body ff-connect="todomvc-angular" class="learn-bar loading">
     <div class="loading">
             Loading...
         </div>
@@ -35,7 +35,7 @@
 			<h1>todos</h1>
 			<form ff-submit="todos">
 				<input id="completed" type="checkbox" class="hide" />
-				<input id="new-todo" atr-id="title" atr-trim placeholder="What needs to be done?" autofocus>
+				<input id="new-todo" atr-id="title" atr-trim placeholder="What needs to be done?" autofocus required>
 				<button class="hide" type="submit"></button>
 			</form>
 		</header>
@@ -60,7 +60,7 @@
 		<footer id="footer" ff-visible="todos">
 			<span id="todo-count" ff-totals="todos">
 					<strong ff-count="!completed" >0</strong>
-					left
+					item{{#ifnot count_completed() === 1}}s{{/ifnot}} left
 				</span>
 			<ul id="filters" ff-class="#showActive, #showCompleted">
 				<li>

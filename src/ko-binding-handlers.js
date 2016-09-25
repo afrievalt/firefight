@@ -26,42 +26,66 @@ ko.bindingHandlers.ffInlineUpdate = {
 
         if (listId) {
             valueBinding = allBindings().value;  //we grab the value binding as in data-bind="value: something"
-            $(element).keypress(handleReturn);
-            $(element).keyup(handleEscape);
+            $elm.keypress(handleReturn);
+            $elm.keyup(handleEscape);
+            bindingContext.$root._selected[listId].subscribe((change) => {
+                if (bindingContext.$data._key === change[0]) {
+                    $elm.focus();
+                }
+            });
+            $elm.blur(() => {
+                console.log("bluring", $elm.updating)
+                if($elm.updating !== true){
+                    virtualSubmit()
+                }
+                $elm.updating = false;                
+            })
         }
         return;
 
         function handleReturn(e) {
             if (e.which === LF || e.which === CR) {
-                let newVal = $elm.val();
-                unselect();
-                console.log("in return");
-
-                if ($elm.hasAttr("atr-trim") && valueBinding) {
-                    newVal = newVal.trim()
-                    valueBinding(newVal);
-
-                }
-                //delete if empty
-                if (newVal === "") {
-                    $elm.next("[atr-empty]").click();
-                }
-                $elm.blur(); //force blur for ie 
+                $elm.updating = true;
+                virtualSubmit()
             }
         }
+        function virtualSubmit() {
+            let newVal = $elm.val();
+            let $next = $elm.next("[atr-empty]");
 
+            console.log("in virtualSubmit", newVal);
+
+            if ($elm.hasAttr("atr-trim") && valueBinding) {
+                newVal = newVal.trim();
+                console.log("trimmed", newVal)
+            }
+            
+            //delete if empty
+            if ((newVal === "") && $next.length) {
+                console.log("removing empty")
+                $elm.remove();// or mrak to remove
+                $next.click();
+            }
+            else {
+                unselect();
+                valueBinding(newVal);
+            }
+        }
         function handleEscape(e) {//if escaped, grab original value, wait and reset original value
-            if (e.which === ESC) {
+            if (e.which === ESC) {                
                 unselect();
                 orgValue = valueBinding && valueBinding()
-                if (!_.isUndefined(orgValue)) {
+                console.log("escape detected", orgValue)
+                if (!_.isUndefined(orgValue)) {                    
                     setTimeout(resetValue, 100);
                     function resetValue() {
+                        console.log("delayed excape set", orgValue);
                         valueBinding(orgValue);
-                    }
+                    }                   
                 }
+                $elm.updating = true;
             }
-        }
+        }        
 
         function unselect() {
             //ff.vm._selected[listId]([]); //todo: handle multi-select, find index and delete
