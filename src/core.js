@@ -5,6 +5,7 @@ import punches from 'knockout-punches'
 import jQuery from 'jquery'
 import setupDocumentationPage from './doc-helper.js'
 import setupKoExtenders from './ko-extenders.js'
+import db from './database.js'
 import _ from './utility.js'
 import getExtentions from './extentions.js'
 let $ = jQuery;
@@ -19,6 +20,7 @@ ff.nextId = 0;
 
 (function () {
     let extend = getExtentions(ff);
+    console.log("start")
     if (!setRoot() && ko.punches) return;
     ko.punches.interpolationMarkup.enable();
 
@@ -62,13 +64,15 @@ ff.nextId = 0;
         var rootAtr;
         ff.$root = $('[ff-root],[ff-connect]');
         if (ff.$root.length !== 1) return false;
-        fbName = ff.$root.attr('ff-connect') || ff.$root.attr('ff-root');
         ff.options = {
+            name: ff.$root.attr('ff-connect') || ff.$root.attr('ff-root'),
             connectionType: ff.$root.attr('atr-connectionType'),
             allowAnonymous: ff.$root.attr('atr-allowAnonymous'),
-            setupDocumentationPage: ff.$root.attr('atr-docHelp')
+            setupDocumentationPage: ff.$root.attr('atr-docHelp'),
+            apiKey: ff.$root.attr('atr-apiKey')            
         };
-        ff.fb = new Firebase("https://" + fbName + ".firebaseio.com");
+        //ff.fb = new Firebase("https://" + fbName + ".firebaseio.com");
+        ff.fb = db.init(ff.options);
         setupKoExtenders(ff.fb);
         rootAtr = ff.$root.attr('atr-root');
         if (rootAtr) {

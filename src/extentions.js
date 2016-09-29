@@ -17,7 +17,7 @@ export default function getExtentions(ff) {
             extend: '_default',
             addDataBind: function ($elm) {
                 _.addDataBind($elm, this.binding, $elm.data('_ffBindTarget'));
-                _.addDataBind($elm, "ffInlineUpdate", "null");
+              //  _.addDataBind($elm, "ffInlineUpdate", "null");
             }
         },
         '[text]': {
@@ -25,7 +25,7 @@ export default function getExtentions(ff) {
             extend: '_default',
             addDataBind: function ($elm) {
                 _.addDataBind($elm, this.binding, $elm.data('_ffBindTarget'));
-                _.addDataBind($elm, "ffInlineUpdate", "null");
+             //   _.addDataBind($elm, "ffInlineUpdate", "null");
             },
         },
         '[hidden]': {

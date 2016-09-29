@@ -31,11 +31,13 @@ export default function setupKoExtenders(firebase) {
         return target;
     };
 
+//is this used?
     ko.extenders.trim = function(target, options) {
         //todo: handle none, left, right trim
         var result = ko.pureComputed({
             read: target,  //always return the original observables value
             write: function(newValue) {
+                console.log("in write", newValue);
                 target(newValue);
                 let current = target();
                 let valueToWrite = newValue.trim && newValue.trim();

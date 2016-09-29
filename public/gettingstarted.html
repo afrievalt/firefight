@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/override.css" />
     <script src="js/vendor/modernizr.js"></script>
+    
 </head>
 
-<body>
+<body ff-connect="gggggg-18107" atr-apiKey="AIzaSyAROOIphKjkh96rn7exluKHbLuFfD9A_lo">
     <header>
         <div class="row">
             <div class="large-12 columns">
@@ -74,322 +75,67 @@
             <div class="callout large">
                 <ol id="instructions">
                     <li >
-                        Go to <a href="https://firebase.google.com" target="window">firebase.google.com</a> 
-                    <br>Click "Get stared, its free."</li>
-                    <li>Click "Sign in with you're google account."
+                        Go to <a href="https://firebase.google.com" target="window">https://ffirebase.google.com</a> 
+                    <br>Click <span>Get stared, its free.</span></li>
+                    <li>Click <span>Sign in with you're google account</span>.
                     <br>Sign in</li>
-                    <li>Click "Create New Project"<br>
+                    <li>Click <span>Create New Project</span><br>
                     Enter a project name<br>
-                    Click "Create Project"
+                    Click <span>Create Project</span>
                     </li>
-                    <li>Click "database" from the left hand menu
-                        <br>Click "Rules" tab near the top of the page
-                        <br>In the editor, replace "auth !=null" with true so it looks liek this:
-                        <pre>{
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
-}</pre>
-                        Click "publish"<br>
-                        Note: You will be warned that the data you are about to add will be public.  This is fine for learning, but you will want to secure your  real data.
-                    </li>
-                    <li>
-                        Find your data URL.<br>
-                        <img class="url" src="img/url.JPG" />
-                        <br />
-                        Copy and Paste the URL here and click enter. 
-                        <br />
-                        <input id="url" placeholder="ex: https://<yourapp>.firebaseio.com/">
-                        <button id="enter">Enter</button>
-                        <br />
-                    </li>
-                    <li id="error" class="hide"></li>
+                    <li>Click <span>Add Firebase to your web app</span><br>
+                    Click <span>copy</span>.<br>
+                    Close the dialog.<br>
+                    Past content in here:<textarea id="snipit"></textarea></li>
+                    <li>From the left hand menu, click <span>Auth</span><br>
+                        Click <span>SET UP SIGN-IN METHOD</span> in the center of the screen<br>
+                        Click <span>Anonymous</span> from the providers list.<br>
+                        Click / Toggle the <span>Enable</span> toggle.<br>
+                        Click <span>Save</span><br>
+                        <div id="error"></div>
+                        <button id="next">Next ></button>
+                     </li>
+                    <!--<li>
+                        Create a firefight account:
+                        <label>e-mail address:<input id="email" placehoder="ex: yourname@gmail.com"></label>
+                        <label>password:<input id="password" placehoder="ex: keepmesecret"></label>
+                        <button id="enter" ff-create>Create Account</button>
+                    </li>-->
+                    
                 </ol>
             </div>
         </div>
     </div>
-    <div id="samples" class="hide">
-        <div class="row ">
-            <div class="large-7 columns">
-                <h5>Getting started samples:</h5>
-                <hr/>
-            </div>
-        </div>
-        <div id="hello_world" class="row ">
-            <div class="large-2 medium-4 small-9 columns">
-                <div class="sample-name">Hello world</div>
-            </div>
-            <div class="large-3 medium-4 small-9 columns pen-cell">                
-                <form action="http://codepen.io/pen/define" method="POST" target="_blank">
-                    <input type="hidden" name="data" class='data'>                    
-                    <button class="code-pen">Codepen <img src="http://s.cdpn.io/3/cp-arrow-right.svg"></button>
-                </form>
-            </div>
-            <div class="large-2 medium-4 small-9 columns download-cell"><a id="download">download <img src="img/icon-download35.png"/></a></div>
-            <div class="large-5 medium-0 small-0 columns"></div>
-            <div class="hide code"><!-- ff-connect creates a connection to your database-->
-{{greeting}} <!-- {{greeting}} reads the value of greeting from your database -->
-<!-- I've added the key value pair Greeting = 'Welcome To Firefight' for you.  Now change the value in Firebase and see what happens. -->
-<!-- In a HTML file, the script tag needs to go here.  See download for example. -->
-</div>
-        </div>
-        <div class="row hr-row">
-            <div class="large-7 columns">
-                <hr/>
-            </div>
-        </div>
-        <div id="add_data" class="row ">
-            <div class="large-2 medium-4 small-9 columns">
-                <div class="sample-name">Add Data</div>
-            </div>
-            <div class="large-3 medium-4 small-9 columns pen-cell">                
-                <form action="http://codepen.io/pen/define" method="POST" target="_blank">
-                    <input type="hidden" name="data" class='data'>                    
-                    <button class="code-pen">Codepen <img src="http://s.cdpn.io/3/cp-arrow-right.svg"></button>
-                </form>
-            </div>
-            <div class="large-2 medium-4 small-9 columns download-cell"><a id="A1">download <img src="img/icon-download35.png"/></a></div>
-            <div class="large-5 medium-0 small-0 columns"></div>
-            <div class="hide code">
-<input id="question" placeholder="enter question" /> <!-- this line will add a new key of 'question' (from id)  -->
-<!-- Enter a value in the textbox.  After leaving textbox, the entered value will become the value of 'quesiton' in firebase --></div>
-</div>
-        <div class="row hr-row">
-            <div class="large-7 columns">
-                <hr/>
-            </div>
-        </div>
-        <div id="submit_form" class="row ">
-            <div class="large-2 medium-4 small-9 columns">
-                <div class="sample-name">Submit Form</div>
-            </div>
-            <div class="large-3 medium-4 small-9 columns pen-cell">                
-                <form action="http://codepen.io/pen/define" method="POST" target="_blank">
-                    <input type="hidden" name="data" class='data'>                    
-                    <button class="code-pen">Codepen <img src="http://s.cdpn.io/3/cp-arrow-right.svg"></button>
-                </form>
-            </div>
-            <div class="large-2 medium-4 small-9 columns download-cell"><a id="A2">download <img src="img/icon-download35.png"/></a></div>
-            <div class="large-5 medium-0 small-0 columns"></div>
-            <div class="hide css">label {display: block;}</div>
-            <div class="hide code">
-<ul ff-foreach="people"> <!-- Display inner html of this ul once for each item in the 'people' list  -->  
-            <li>{{firstName}} {{lastName}} - {{city}}</li>
-        </ul>
-  
-Submitting this form will add an object the people list.
-<form ff-submit="people"> <!-- Submitting this form will add an object the people list. -->  
-    <label>First Name: <input id="firstName"></label>
-    <label>Last Name: <input id="lastName"></label><!-- Each textbox will be a key value pair in the submitted object.  -->
-    <label>City: <input id="city"></label> 
-    <button type="submit">Add Person</button>
-</form>
-            </div></div>
-        <div class="row hr-row">
-            <div class="large-7 columns">
-                <hr/>
-            </div>
-        </div>        
-        <div id="sort_filter" class="row ">
-            <div class="large-2 medium-4 small-9 columns">
-                <div class="sample-name">Sort Filter</div>                
-            </div>
-            <div class="large-3 medium-4 small-9 columns pen-cell">                
-                <form action="http://codepen.io/pen/define" method="POST" target="_blank">
-                    <input type="hidden" name="data" class='data'>                    
-                    <button class="code-pen">Codepen <img src="http://s.cdpn.io/3/cp-arrow-right.svg"></button>
-                </form>
-            </div>
-            <div class="large-2 medium-4 small-9 columns download-cell"><a id="A3">download <img src="img/icon-download35.png"/></a></div>
-            <div class="large-5 medium-0 small-0 columns"></div>
-            <div class="hide css">a {
-  color: red;
-  cursor: pointer;
-}
-
-thead td {
-  font-weight: bold;
-  cursor: pointer;
-}</div>
-            <div class="hide code">Department Filer: 
-<select ff-filter="tbodyNames:department" >
-    <option value="*">Any</option>
-    <option value="Human Resources">Human Resources</option>
-    <option value="Engineering">Engineering</option>
-    <option value="Sales">Sales</option>
-    <option value="Information Technology">Information Technology</option> 
-    <option value="Accounting">Accounting</option>
-    <option value="Financial Services">Financial Services</option>            
-</select>
-                
-<div>To populate list, click "+ Add Data" from "Getting Started" page.</div>
-<div>Click headers to sort.</div>                
-<table>
-    <thead>
-        <tr>
-            <td ff-sort="tbodyNames:first">First Name</td>
-            <td ff-sort="tbodyNames:middle">Middle Innitial</td>
-            <td ff-sort="tbodyNames:last">Last Name</td>
-            <td ff-sort="tbodyNames:department">Department</td>
-            <td ></td>
-        </tr>
-    </thead>
-    <tbody id="tbodyNames" ff-foreach="employees">
-        <tr>
-            <td>{{first}}</td>
-            <td>{{middle}}</td>
-            <td>{{last}}</td>
-            <td>{{department}}</td>
-            <td><a ff-delete>x</a></td>
-        </tr>
-    </tbody>
-</table>
-</div></div>
-        
-        <div class="row">
-            <div class="large-2 medium-4 small-9 columns">
-                <div><a onclick="addData()">+ add data</a></div>
-            </div>
-        </div>
-    <div class="row hr-row">
-        <div class="large-7 columns">
-            <hr/>
-        </div>
-    </div>
-        </div>
-    <script src="https://firefight.firebaseapp.com/js/lib/firebase.js"></script>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
     <script>
-        $(document).foundation();
-        if (/*@cc_on!@*/false || !!document.documentMode) {
-            $("#error").text("Firefight js does work with IE, but unfortunately this tutorial doesn't.  Please try another browser like chrome.").show();
-        }
+        var $next =  document.getElementById('next');
+        var $error = document.getElementById('error');
+        var $snipit = document.getElementById('snipit');
+        $next.onclick = handleClick;
         
-        function addData() {
-            debugger;
-            function getRandom(array) {
-                var max = array.length;
-                var i = Math.floor(Math.random() * (max));
-                return array[i];
+        function handleClick() {
+            var apiKey = parse(/apiKey:\s\"(.+?)\",/);             
+            var database = parse(/databaseURL:\s\"https:\/\/(.+?)\.firebaseio\.com\",/);
+            var error = "";
+            errorOnEmpty(apiKey, "Unable to parse apiKey.  ");
+            errorOnEmpty(database, "Unable to parse databaseURL.  ");
+            
+            if(!$error.innerHTML){                
+                console.log(apiKey, database)
+                window.document.location = "./gettingstarted3.html?apiKey=" +
+                    apiKey + "&database=" + database;
             }
-            var url = $("#url").val(); //https://somename.fbapp.com
-            var firebase = new Firebase(url);
-            var employees = firebase.child("employees");
-            var employee;
-            var data = {
-                first: ["Sam", "Mark", 'Allison', 'Arthur', 'Arlene', 'Barry', 'Bertha', 'Bill', 'Bonnie', 'Bret', 'Beryl', 'Chantal', 'Cristobal', 'Claudette', 'Charley', 'Cindy', 'Chris', 'Dean', 'Dolly', 'Danny', 'Danielle', 'Dennis', 'Debby', 'Erin', 'Edouard', 'Erika', 'Earl', 'Emily', 'Ernesto', 'Felix', 'Fay', 'Fabian', 'Frances', 'Franklin', 'Florence', 'Gabielle', 'Gustav', 'Grace', 'Gaston', 'Gert', 'Gordon', 'Humberto', 'Hanna', 'Henri', 'Hermine', 'Harvey', 'Helene', 'Iris', 'Isidore', 'Isabel', 'Ivan', 'Irene', 'Isaac', 'Jerry', 'Josephine', 'Juan', 'Jeanne', 'Jose', 'Joyce', 'Karen', 'Kyle', 'Kate', 'Karl', 'Katrina', 'Kirk', 'Lorenzo', 'Lili', 'Larry', 'Lisa', 'Lee', 'Leslie', 'Michelle', 'Marco', 'Mindy', 'Maria', 'Michael', 'Noel', 'Nana', 'Nicholas'],
-                last: ['Abbott', 'Acevedo', 'Acosta', 'Adams', 'Adkins', 'Aguilar', 'Aguirre', 'Albert', 'Alexander', 'Alford', 'Allen', 'Allison', 'Anderson', 'Atkinson', 'Austin', 'Ayers', 'Crockford', 'Berners-Lee', 'Brin', 'Page', 'Zuckerberg', 'Gates', 'Goodger', 'Musk', 'Gosling', 'Bailey', 'Baird', 'Baker', 'Baldwin', 'Ball', 'Barnes', 'Barnett', 'Smith', 'Smith', 'Jackson', 'Hopper'],
-                middle: "AATTMKSNMAPMGMBCBCFAET TLJRJQFG   ",
-                department: ["Human Resources", "Engineering", "Sales", "Engineering", "Sales", "Engineering", "Sales", "Information Technology", "Accounting", "Financial Services"]
-            };
-            var i = 0;
-            var count = 50;
-            for (; i < count; i += 1) {
-                employee = employees.push();
-                employee.set({
-                    first: getRandom(data.first),
-                    middle: getRandom(data.middle),
-                    last: getRandom(data.last),
-                    department: getRandom(data.department)
-                });
+            
+            function errorOnEmpty(value, message){
+                if(value === ""){
+                    $error.innerHTML = $error.innerHTML + message;
+                }
             }
-
+            
+            function parse(regEx) {
+                var matches = $snipit.value.match(regEx);
+                return matches && matches.length === 2? matches[1] : ""; 
+            }
         }
-        (function () {
-            $("#enter").click(clickEnter);
-            function clickEnter() {                
-                var database, firebase;
-                var url = $("#url").val(); //https://somename.fbapp.com
-                function getFfConnectString() {
-                    var result = "";
-                    var parts = url.split('.');
-                    var app = parts[0]; //https://somename
-                    if (parts.length === 3 && parts[1] === "firebaseio" && (parts[2] === "com" || parts[2] === "com/")) {
-                        parts = app.split('//'); //['https:', 'somename']
-                        result = parts.length > 1 && parts[0] === "https:" && parts[1]; //'somename'
-                    }
-                    return result;
-                }
-
-                
-                var orgWarn = console.warn;
-
-                console.warn = function (message) {
-                    if (-1 !== message.indexOf("FIREBASE WARNING: Firebase error. Please ensure that you spelled")) {
-                        console.warn = orgWarn;
-                        error(message);
-                    }
-                    return orgWarn.apply(console, arguments);
-                };
-                try {
-                    database = getFfConnectString();
-                    if (database) {
-                        firebase = new Firebase(url);
-                        firebase.once("value", enterUrl);
-
-                        function enterUrl(snap) {
-                            firebase.update({ "greeting": "Welcome to Firefight js" });
-                            setUpButtons(database);
-                        };
-                    } else {
-                        error("ERROR! Unable to parse:" + url);
-                    }
-                    
-                }
-                catch (e) {
-                    error(e.message);
-                }
-            }
-
-            function error(msg) {
-                $("#error").text(msg).show();
-            }
-            function setUpButtons(database) {
-                $("#error,#instructions").hide();
-                $("#samples").show();
-                $("#hello_world, #add_data, #submit_form, #sort_filter").each(setupRow);
-                function setupRow() {
-                    
-                    var $this = $(this);
-                    var fileName = $this.find(".sample-name").html().replace(' ', '-') + ".html";
-                    var body = database + "'>" + $this.find(".code").html();
-                    var $data = $this.find(".data");
-                    var css = $this.find(".css").html();
-                    var data = {
-                        "title": "New Pen!",
-                        "html": "<div ff-connect='" + body + "</div>",
-                        "editors": "1000",
-                        "js_external": "https://firefight.firebaseapp.com/js/firefight-bundle.js"
-                    };
-                    if (css) {
-                        data.css = css;
-                    }
-                    // Quotes will screw up the JSON // careful copy and pasting, I had to use a zero-width space here to get markdown to post this.
-                    var JSONstring = JSON.stringify(data).replace(/"/g, "&​quot;").replace(/'/g, "&apos;");
-
-                    var start = "<!doctype html><html class='no-js' lang='en'><head>";
-                    if (css) {
-                        start += "<style>" + css + "</style>";
-
-                    }
-                    start += "</head>\n<body ff-connect='";
-
-                    var end = '<script src="https://firefight.firebaseapp.com/js/firefight-bundle.js"><' + '/script></body></html>';
-
-                    var bb = new Blob([start + body + end], { type: 'text/html' });
-                    
-                    var a = $this.find("a")[0];
-                    a.download = fileName;
-                    window.URL = window.URL || window.webkitURL;
-                    a.href = window.URL.createObjectURL(bb);
-                    a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
-                    a.draggable = true; // Don't really need, but good practice.
-                    $data.attr("value", JSONstring);
-                }
-            }
-        })();
     </script>
 
 </body>

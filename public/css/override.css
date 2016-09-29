@@ -78,3 +78,8 @@ img.url {height: 150px;}
 	
 	
 } /*end desktop*/
+
+#instructions span {
+	color: #008CBA;
+	font-weight: bold;
+}

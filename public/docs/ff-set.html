@@ -9,9 +9,9 @@
         #ffSample2 a, #ffSample3 a {
             display: block;
         }
-    </style>
+    </style>    
 </head>
-<body ff-connection="torid-fire-5369"> /*need torid-fire to coonect to facebook*/
+<body ff-connect="ff-demo" class="loading" atr-connectionType="offline">    
     <div class="loading">
         Loading...
     </div>
@@ -26,15 +26,14 @@
             <h4>HTML</h4>
             <pre class="prettyprint" code-example="ffSample2"></pre>
             <h4>Result</h4>
-            <div id="ffSample2">
-                {{myValue}}
-                <button ff-set="myValue=0">reset</button>
-                <a href="#" ff-set="myValue+=1">plus one</a>
-                <a href="#" ff-set="myValue-=1">minus one</a>
-                <a href="#" ff-set="myValue*=2">times two</a>
-                <a href="#!" ff-set="myValue/=2">half</a>
-                <a href="#" ff-login="facebook">facebook login</a>
-                <a href="#" ff-set="vote{{_user.id}}='Up'">half</a>
+            <div id="ffSample2">{{myValue}}
+<button ff-set="myValue=0">reset</button>
+<a href="#!" ff-set="myValue+=1">plus one</a>
+<a href="#!" ff-set="myValue-=1">minus one</a>
+<a href="#!" ff-set="myValue*=2">times two</a>
+<a href="#!" ff-set="myValue/=2">half</a>
+<a href="#!" ff-login="facebook">facebook login</a>
+<a href="#!" ff-set="vote{{_user.id}}='Up'">half</a>
             </div>
             <h4>Firebase emulator</h4>
             <div class="tree">
@@ -50,10 +49,9 @@
             <h4>HTML</h4>
             <pre class="prettyprint" code-example="ffSample3"></pre>
             <h4>Result</h4>
-            <div id="ffSample3">
-                <div>{{setText}}</div>
-                <button ff-set="setText='alpha'">alpha</button>
-                <button ff-set="setText='beta'">beta</button>
+            <div id="ffSample3"><div>{{setText}}</div>
+<button ff-set="setText='alpha'">alpha</button>
+<button ff-set="setText='beta'">beta</button>
             </div>
             <h4>Firebase emulator</h4>
             <div class="tree">
@@ -62,8 +60,8 @@
                 </ul>
             </div>
         </div>
-        <p>Click the above buttons and notice the value change in the Firebase emulator. <a href="https://www.firebase.com/docs/security/" target="window">Firebase's security</a> prevents setText from being set to anything but alpha or beta.  </p>
-
+        <p>Click the above buttons and notice the value change in the Firebase emulator. <a href="https://www.firebase.com/docs/security/" target="window">Firebase's security</a> can prevents setText from being set to anything but alpha or beta.  </p>
+<!--
         <h4>Result</h4>
         <div id="ffSample3">
             <a href="#" ff-login="facebook">facebook login</a>
@@ -89,11 +87,11 @@
 
                 </li>
             </ul>
-        </div>
+        </div>-->
     </div>
 
     <a href="../docs.html">< Back To DOCS</a>
     </div>
-    <script src="../js/firefight-bundle.js" data-doc-help></script>
+    <script src="../js/lagacy-firefight-bundle.js" data-doc-help></script>
 </body>
 </html>
