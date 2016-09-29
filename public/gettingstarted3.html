@@ -96,9 +96,9 @@
                 <div class="sample-name">Hello world</div>
             </div>
             <div class="large-3 medium-4 small-9 columns pen-cell">                
-                <form action="http://codepen.io/pen/define" method="POST" target="_blank">
+                <form action="https://codepen.io/pen/define" method="POST" target="_blank">
                     <input type="hidden" name="data" class='data'>                    
-                    <button class="code-pen">Codepen <img src="http://s.cdpn.io/3/cp-arrow-right.svg"></button>
+                    <button class="code-pen">Codepen <img src="img/cp-arrow-right.svg"></button>
                 </form>
             </div>
             <div class="large-2 medium-4 small-9 columns download-cell"><a id="download">download <img src="img/icon-download35.png"/></a></div>
@@ -119,9 +119,9 @@
                 <div class="sample-name">Add Data</div>
             </div>
             <div class="large-3 medium-4 small-9 columns pen-cell">                
-                <form action="http://codepen.io/pen/define" method="POST" target="_blank">
+                <form action="https://codepen.io/pen/define" method="POST" target="_blank">
                     <input type="hidden" name="data" class='data'>                    
-                    <button class="code-pen">Codepen <img src="http://s.cdpn.io/3/cp-arrow-right.svg"></button>
+                    <button class="code-pen">Codepen <img src="img/cp-arrow-right.svg"></button>
                 </form>
             </div>
             <div class="large-2 medium-4 small-9 columns download-cell"><a id="A1">download <img src="img/icon-download35.png"/></a></div>
@@ -140,9 +140,9 @@
                 <div class="sample-name">Submit Form</div>
             </div>
             <div class="large-3 medium-4 small-9 columns pen-cell">                
-                <form action="http://codepen.io/pen/define" method="POST" target="_blank">
+                <form action="https://codepen.io/pen/define" method="POST" target="_blank">
                     <input type="hidden" name="data" class='data'>                    
-                    <button class="code-pen">Codepen <img src="http://s.cdpn.io/3/cp-arrow-right.svg"></button>
+                    <button class="code-pen">Codepen <img src="img/cp-arrow-right.svg"></button>
                 </form>
             </div>
             <div class="large-2 medium-4 small-9 columns download-cell"><a id="A2">download <img src="img/icon-download35.png"/></a></div>
@@ -171,9 +171,9 @@ Submitting this form will add an object the people list.
                 <div class="sample-name">Sort Filter</div>                
             </div>
             <div class="large-3 medium-4 small-9 columns pen-cell">                
-                <form action="http://codepen.io/pen/define" method="POST" target="_blank">
+                <form action="https://codepen.io/pen/define" method="POST" target="_blank">
                     <input type="hidden" name="data" class='data'>                    
-                    <button class="code-pen">Codepen <img src="http://s.cdpn.io/3/cp-arrow-right.svg"></button>
+                    <button class="code-pen">Codepen <img src="img/cp-arrow-right.svg"></button>
                 </form>
             </div>
             <div class="large-2 medium-4 small-9 columns download-cell"><a id="A3">download <img src="img/icon-download35.png"/></a></div>
@@ -197,8 +197,7 @@ thead td {
     <option value="Accounting">Accounting</option>
     <option value="Financial Services">Financial Services</option>            
 </select>
-                
-<div>To populate list, click "+ Add Data" from "Getting Started" page.</div>
+
 <div>Click headers to sort.</div>                
 <table>
     <thead>
@@ -221,12 +220,6 @@ thead td {
     </tbody>
 </table>
 </div></div>
-        
-        <div class="row">
-            <div class="large-2 medium-4 small-9 columns">
-                <div><a onclick="addData()">+ add data</a></div>
-            </div>
-        </div>
     <div class="row hr-row">
         <div class="large-7 columns">
             <hr/>
@@ -243,15 +236,14 @@ thead td {
             $("#error").text("Firefight js does work with IE, but unfortunately this tutorial doesn't.  Please try another browser like chrome.").show();
         }
         
-        function addData() {
+        function addData(rootRef) {
             function getRandom(array) {
                 var max = array.length;
                 var i = Math.floor(Math.random() * (max));
                 return array[i];
             }
-            var url = $("#url").val(); //https://somename.fbapp.com
-            var firebase = new Firebase(url);
-            var employees = firebase.child("employees");
+            var url = $("#url").val(); //https://somename.fbapp.com            
+            var employees = rootRef.child("employees");
             var employee;
             var data = {
                 first: ["Sam", "Mark", 'Allison', 'Arthur', 'Arlene', 'Barry', 'Bertha', 'Bill', 'Bonnie', 'Bret', 'Beryl', 'Chantal', 'Cristobal', 'Claudette', 'Charley', 'Cindy', 'Chris', 'Dean', 'Dolly', 'Danny', 'Danielle', 'Dennis', 'Debby', 'Erin', 'Edouard', 'Erika', 'Earl', 'Emily', 'Ernesto', 'Felix', 'Fay', 'Fabian', 'Frances', 'Franklin', 'Florence', 'Gabielle', 'Gustav', 'Grace', 'Gaston', 'Gert', 'Gordon', 'Humberto', 'Hanna', 'Henri', 'Hermine', 'Harvey', 'Helene', 'Iris', 'Isidore', 'Isabel', 'Ivan', 'Irene', 'Isaac', 'Jerry', 'Josephine', 'Juan', 'Jeanne', 'Jose', 'Joyce', 'Karen', 'Kyle', 'Kate', 'Karl', 'Katrina', 'Kirk', 'Lorenzo', 'Lili', 'Larry', 'Lisa', 'Lee', 'Leslie', 'Michelle', 'Marco', 'Mindy', 'Maria', 'Michael', 'Noel', 'Nana', 'Nicholas'],
@@ -312,6 +304,7 @@ thead td {
 
                     function enterUrl(snap) {
                         rootRef.update({ "greeting": "Welcome to Firefight js" });
+                        addData(rootRef);
                         setUpButtons(config);
                         //add more data
                     };
