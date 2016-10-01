@@ -17,7 +17,9 @@ export default function getExtentions(ff) {
             extend: '_default',
             addDataBind: function ($elm) {
                 _.addDataBind($elm, this.binding, $elm.data('_ffBindTarget'));
-              //  _.addDataBind($elm, "ffInlineUpdate", "null");
+                if ($elm.hasAttr("atr-inlineUpdate")) {
+                    _.addDataBind($elm, "ffInlineUpdate", "null");
+                }
             }
         },
         '[text]': {
@@ -25,7 +27,9 @@ export default function getExtentions(ff) {
             extend: '_default',
             addDataBind: function ($elm) {
                 _.addDataBind($elm, this.binding, $elm.data('_ffBindTarget'));
-             //   _.addDataBind($elm, "ffInlineUpdate", "null");
+                if ($elm.hasAttr("atr-inlineUpdate")) {
+                    _.addDataBind($elm, "ffInlineUpdate", "null");
+                }
             },
         },
         '[hidden]': {
@@ -363,7 +367,7 @@ export default function getExtentions(ff) {
                 $elm.data("_ffBindTarget", "count_" + result.condition);
                 result.bindTarget = "count_" + result.condition;
                 result.listTarget = $totals.attr("ff-totals");
-                                
+
                 return result;
             },
             extend: '_default',
@@ -670,7 +674,7 @@ export default function getExtentions(ff) {
                     observable(!observable());
                 }
             },
-            addDataBind: function ($elm, tokens) {                
+            addDataBind: function ($elm, tokens) {
                 let {listTarget} = tokens;
                 if (listTarget) {
                     _.addDataBind($elm, "checked", `$root.$toggleState${listTarget}`);

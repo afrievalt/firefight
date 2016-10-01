@@ -10,7 +10,7 @@
     <link href="../css/tree.css" rel="stylesheet" />
     <link href="../css/prettify.css" rel="stylesheet" />
     <style>
-        b { color: red;}
+        b { color: red;cursor: pointer}
     </style>
 </head>
 <body ff-root="torid-fire-5369">
@@ -25,7 +25,8 @@
 <div id="ffSample2"><ul ff-foreach="simpleChatList">
     <li>
         <img ff-src="usrImg">
-        {{message}} 
+        {{message}}
+        <b ff-delete>x</b> 
     </li>
 </ul>
 

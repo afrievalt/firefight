@@ -14,7 +14,7 @@
     
 </head>
 
-<body ff-connect="gggggg-18107" atr-apiKey="AIzaSyAROOIphKjkh96rn7exluKHbLuFfD9A_lo">
+<body>
     <header>
         <div class="row">
             <div class="large-12 columns">
@@ -86,12 +86,14 @@
                     <li>Click <span>Add Firebase to your web app</span><br>
                     Click <span>copy</span>.<br>
                     Close the dialog.<br>
-                    Past content in here:<textarea id="snipit"></textarea></li>
+                    
+                    </li>
                     <li>From the left hand menu, click <span>Auth</span><br>
                         Click <span>SET UP SIGN-IN METHOD</span> in the center of the screen<br>
                         Click <span>Anonymous</span> from the providers list.<br>
                         Click / Toggle the <span>Enable</span> toggle.<br>
                         Click <span>Save</span><br>
+                        Past content in here:<textarea id="snipit"></textarea>
                         <div id="error"></div>
                         <button id="next">Next ></button>
                      </li>
@@ -106,6 +108,9 @@
             </div>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/3.0.4/firebase.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
     <script>
         var $next =  document.getElementById('next');
         var $error = document.getElementById('error');

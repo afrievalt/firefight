@@ -47,14 +47,33 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./src/jQuery-extend.js */1);
-	__webpack_require__(/*! ./src/ko-binding-handlers.js */7);
-	__webpack_require__(/*! ./src/polyfill.js */10);
-	module.exports = __webpack_require__(/*! ./src/core.js */11);
+	__webpack_require__(/*! ./src/google-analytics.js */1);
+	__webpack_require__(/*! ./src/jQuery-extend.js */2);
+	__webpack_require__(/*! ./src/ko-binding-handlers.js */8);
+	__webpack_require__(/*! ./src/polyfill.js */11);
+	module.exports = __webpack_require__(/*! ./src/core.js */12);
 
 
 /***/ },
 /* 1 */
+/*!*********************************!*\
+  !*** ./src/google-analytics.js ***!
+  \*********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	(function (i, s, o, g, r, a, m) {
+	  i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {
+	    (i[r].q = i[r].q || []).push(arguments);
+	  }, i[r].l = 1 * new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m);
+	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+	
+	ga('create', 'UA-84811786-1', 'auto');
+	ga('send', 'pageview');
+
+/***/ },
+/* 2 */
 /*!******************************!*\
   !*** ./src/jQuery-extend.js ***!
   \******************************/
@@ -62,11 +81,11 @@
 
 	'use strict';
 	
-	var _jquery = __webpack_require__(/*! jquery */ 2);
+	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _utility = __webpack_require__(/*! ./utility.js */ 3);
+	var _utility = __webpack_require__(/*! ./utility.js */ 4);
 	
 	var _utility2 = _interopRequireDefault(_utility);
 	
@@ -186,7 +205,7 @@
 	});
 
 /***/ },
-/* 2 */
+/* 3 */
 /*!*********************************!*\
   !*** ./~/jquery/dist/jquery.js ***!
   \*********************************/
@@ -10009,7 +10028,7 @@
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /*!************************!*\
   !*** ./src/utility.js ***!
   \************************/
@@ -10023,11 +10042,11 @@
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 	
-	var _jquery = __webpack_require__(/*! jquery */ 2);
+	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _knockout = __webpack_require__(/*! knockout */ 4);
+	var _knockout = __webpack_require__(/*! knockout */ 5);
 	
 	var _knockout2 = _interopRequireDefault(_knockout);
 	
@@ -10271,7 +10290,7 @@
 	exports.default = _;
 
 /***/ },
-/* 4 */
+/* 5 */
 /*!**********************************************************!*\
   !*** ./~/knockout/build/output/knockout-latest.debug.js ***!
   \**********************************************************/
@@ -10295,7 +10314,7 @@
 	        JSON = window["JSON"];
 	(function(factory) {
 	    // Support three module loading scenarios
-	    if ("function" === 'function' && __webpack_require__(/*! !webpack amd define */ 6)['amd']) {
+	    if ("function" === 'function' && __webpack_require__(/*! !webpack amd define */ 7)['amd']) {
 	        // [1] AMD anonymous module
 	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (true) {
@@ -16149,10 +16168,10 @@
 	}());
 	})();
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/module.js */ 5)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/module.js */ 6)(module)))
 
 /***/ },
-/* 5 */
+/* 6 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -16171,7 +16190,7 @@
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /*!***************************************!*\
   !*** (webpack)/buildin/amd-define.js ***!
   \***************************************/
@@ -16181,7 +16200,7 @@
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /*!************************************!*\
   !*** ./src/ko-binding-handlers.js ***!
   \************************************/
@@ -16189,19 +16208,19 @@
 
 	'use strict';
 	
-	var _knockout = __webpack_require__(/*! knockout */ 4);
+	var _knockout = __webpack_require__(/*! knockout */ 5);
 	
 	var _knockout2 = _interopRequireDefault(_knockout);
 	
-	var _jquery = __webpack_require__(/*! jquery */ 2);
+	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _utility = __webpack_require__(/*! ./utility.js */ 3);
+	var _utility = __webpack_require__(/*! ./utility.js */ 4);
 	
 	var _utility2 = _interopRequireDefault(_utility);
 	
-	var _extentions = __webpack_require__(/*! ./extentions.js */ 8);
+	var _extentions = __webpack_require__(/*! ./extentions.js */ 9);
 	
 	var _extentions2 = _interopRequireDefault(_extentions);
 	
@@ -16230,41 +16249,65 @@
 	
 	        if (listId) {
 	            valueBinding = allBindings().value; //we grab the value binding as in data-bind="value: something"
-	            $(element).keypress(handleReturn);
-	            $(element).keyup(handleEscape);
+	            $elm.keypress(handleReturn);
+	            $elm.keyup(handleEscape);
+	            bindingContext.$root._selected[listId].subscribe(function (change) {
+	                if (bindingContext.$data._key === change[0]) {
+	                    $elm.focus();
+	                }
+	            });
+	            $elm.blur(function () {
+	                console.log("bluring", $elm.updating);
+	                if ($elm.updating !== true) {
+	                    virtualSubmit();
+	                }
+	                $elm.updating = false;
+	            });
 	        }
 	        return;
 	
 	        function handleReturn(e) {
 	            if (e.which === LF || e.which === CR) {
-	                var newVal = $elm.val();
-	                unselect();
-	                console.log("in return");
-	
-	                if ($elm.hasAttr("atr-trim") && valueBinding) {
-	                    newVal = newVal.trim();
-	                    valueBinding(newVal);
-	                }
-	                //delete if empty
-	                if (newVal === "") {
-	                    $elm.next("[atr-empty]").click();
-	                }
-	                $elm.blur(); //force blur for ie 
+	                $elm.updating = true;
+	                virtualSubmit();
 	            }
 	        }
+	        function virtualSubmit() {
+	            var newVal = $elm.val();
+	            var $next = $elm.next("[atr-empty]");
 	
+	            console.log("in virtualSubmit", newVal);
+	
+	            if ($elm.hasAttr("atr-trim") && valueBinding) {
+	                newVal = newVal.trim();
+	                console.log("trimmed", newVal);
+	            }
+	
+	            //delete if empty
+	            if (newVal === "" && $next.length) {
+	                console.log("removing empty");
+	                $elm.remove(); // or mrak to remove
+	                $next.click();
+	            } else {
+	                unselect();
+	                valueBinding(newVal);
+	            }
+	        }
 	        function handleEscape(e) {
 	            //if escaped, grab original value, wait and reset original value
 	            if (e.which === ESC) {
 	                unselect();
 	                orgValue = valueBinding && valueBinding();
+	                console.log("escape detected", orgValue);
 	                if (!_utility2.default.isUndefined(orgValue)) {
 	                    var resetValue = function resetValue() {
+	                        console.log("delayed excape set", orgValue);
 	                        valueBinding(orgValue);
 	                    };
 	
 	                    setTimeout(resetValue, 100);
 	                }
+	                $elm.updating = true;
 	            }
 	        }
 	
@@ -16409,7 +16452,7 @@
 	};
 
 /***/ },
-/* 8 */
+/* 9 */
 /*!***************************!*\
   !*** ./src/extentions.js ***!
   \***************************/
@@ -16420,21 +16463,24 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	
 	exports.default = getExtentions;
 	
-	var _knockout = __webpack_require__(/*! knockout */ 4);
+	var _knockout = __webpack_require__(/*! knockout */ 5);
 	
 	var _knockout2 = _interopRequireDefault(_knockout);
 	
-	var _knockoutMapping = __webpack_require__(/*! knockout-mapping */ 9);
+	var _knockoutMapping = __webpack_require__(/*! knockout-mapping */ 10);
 	
 	var _knockoutMapping2 = _interopRequireDefault(_knockoutMapping);
 	
-	var _jquery = __webpack_require__(/*! jquery */ 2);
+	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _utility = __webpack_require__(/*! ./utility.js */ 3);
+	var _utility = __webpack_require__(/*! ./utility.js */ 4);
 	
 	var _utility2 = _interopRequireDefault(_utility);
 	
@@ -16453,7 +16499,9 @@
 	            extend: '_default',
 	            addDataBind: function addDataBind($elm) {
 	                _utility2.default.addDataBind($elm, this.binding, $elm.data('_ffBindTarget'));
-	                _utility2.default.addDataBind($elm, "ffInlineUpdate", "null");
+	                if ($elm.hasAttr("atr-inlineUpdate")) {
+	                    _utility2.default.addDataBind($elm, "ffInlineUpdate", "null");
+	                }
 	            }
 	        },
 	        '[text]': {
@@ -16461,7 +16509,9 @@
 	            extend: '_default',
 	            addDataBind: function addDataBind($elm) {
 	                _utility2.default.addDataBind($elm, this.binding, $elm.data('_ffBindTarget'));
-	                _utility2.default.addDataBind($elm, "ffInlineUpdate", "null");
+	                if ($elm.hasAttr("atr-inlineUpdate")) {
+	                    _utility2.default.addDataBind($elm, "ffInlineUpdate", "null");
+	                }
 	            }
 	        },
 	        '[hidden]': {
@@ -17047,35 +17097,73 @@
 	        'toggle': {
 	            init: function init(elm, content, tokens) {
 	                var resultTokens = _utility2.default.extend({}, tokens, _utility2.default.parseListTokens(content));
-	                resultTokens.toggleState = false;
 	                return resultTokens;
 	            },
 	            extend: '_default',
 	            binding: 'ffEvent',
-	            vmSetup: function vmSetup($elm, vm) {
+	            vmSetup: function vmSetup($elm, vm, child, tokens) {
+	                var listTarget = tokens.listTarget;
+	                var parameterTarget = tokens.parameterTarget;
+	
 	                ff.vm.$toggle = extentions.toggle.event;
+	
+	                if (listTarget) {
+	
+	                    //todo: dry up with count
+	                    ff.vm['$toggle_count_' + listTarget + '_' + parameterTarget] = _knockout2.default.computed(function () {
+	                        var unwrappedValue = _knockout2.default.utils.unwrapObservable(vm[listTarget]);
+	                        unwrappedValue = _utility2.default.objectToArray(unwrappedValue);
+	                        if (unwrappedValue && unwrappedValue.length) {
+	                            return unwrappedValue.reduce(function (total, obj) {
+	                                //unwind doesn't triger change for computed observable 
+	                                //var shouldCount = _.unwind(obj, result.condition);
+	                                var unwrappedObject = _utility2.default.unwrap(obj);
+	                                var shouldCount = !(unwrappedObject[parameterTarget] && _utility2.default.unwrap(unwrappedObject[parameterTarget]));
+	                                return total + (shouldCount ? 1 : 0);
+	                            }, 0);
+	                        }
+	                    });
+	                    //todo: use id if there, test w id
+	                    ff.vm['$toggleState' + listTarget] = _knockout2.default.computed({
+	                        //always return true/false based on the done flag of all todos
+	                        read: function read() {
+	                            return !ff.vm['$toggle_count_' + listTarget + '_' + parameterTarget]();
+	                        },
+	                        // set all todos to the written value (true/false)
+	                        write: _utility2.default.empty //do nothing, handled in event
+	                    });
+	                }
 	            },
 	            event: function event(valueAccessor, allBindings, viewModel, bindingContext) {
 	                var $this = $(this);
 	                var tokens = $this.data("_ffTokens");
+	                var listTarget = tokens.listTarget;
+	                var parameterTarget = tokens.parameterTarget;
+	
 	                var list;
-	                if (tokens && tokens.listTarget) {
-	                    var toggleValue = function toggleValue(elm) {
-	                        var listItem = _utility2.default.unwrap(elm);
-	                        if (_utility2.default.isUndefined(listItem) && _utility2.default.isFunciton(listItem[tokens.parameterTarget])) {
-	                            console.warn("Property " + tokens.listColumTest + " not found in  " + tokens.parameterTarget);
+	                if (listTarget) {
+	                    var _ret = function () {
+	                        var toggleValue = function toggleValue(elm) {
+	                            var listItem = _utility2.default.unwrap(elm);
+	                            if (_utility2.default.isUndefined(listItem) && _utility2.default.isFunciton(listItem[parameterTarget])) {
+	                                console.warn("Property " + parameterTarget + " not found in  " + parameterTarget);
+	                                return true;
+	                            }
+	                            //todo: get path so this works in deep paths
+	                            listItem[parameterTarget](nextState);
 	                            return true;
-	                        }
-	                        //todo: get path so this works in deep paths
-	                        listItem[tokens.parameterTarget](tokens.toggleState);
-	                        return true;
-	                    };
+	                        };
 	
-	                    tokens.toggleState = !tokens.toggleState;
-	                    list = bindingContext.$data[tokens.listTarget];
-	                    _utility2.default.filterObject(list(), toggleValue);
+	                        var nextState = !!bindingContext.$root['$toggle_count_' + listTarget + '_' + parameterTarget]();
+	                        list = bindingContext.$data[tokens.listTarget];
+	                        _utility2.default.filterObject(list(), toggleValue);
 	
-	                    return;
+	                        return {
+	                            v: void 0
+	                        };
+	                    }();
+	
+	                    if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
 	                }
 	                var target = $this.attr("ff-toggle");
 	                var observable = viewModel[target];
@@ -17083,7 +17171,12 @@
 	                    observable(!observable());
 	                }
 	            },
-	            addDataBind: function addDataBind($elm) {
+	            addDataBind: function addDataBind($elm, tokens) {
+	                var listTarget = tokens.listTarget;
+	
+	                if (listTarget) {
+	                    _utility2.default.addDataBind($elm, "checked", '$root.$toggleState' + listTarget);
+	                }
 	                _utility2.default.addDataBind($elm, this.binding, "$root.$toggle");
 	            }
 	        },
@@ -17317,7 +17410,7 @@
 	}
 
 /***/ },
-/* 9 */
+/* 10 */
 /*!*****************************************************!*\
   !*** ./~/knockout-mapping/dist/knockout.mapping.js ***!
   \*****************************************************/
@@ -17336,7 +17429,7 @@
 	
 	    if (true) {
 	        // CommonJS or Node: hard-coded dependency on "knockout"
-	        factory(__webpack_require__(/*! knockout */ 4), exports);
+	        factory(__webpack_require__(/*! knockout */ 5), exports);
 	    }
 	    else if (typeof define === "function" && define["amd"]) {
 	        // AMD anonymous module with hard-coded dependency on "knockout"
@@ -18200,7 +18293,7 @@
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /*!*************************!*\
   !*** ./src/polyfill.js ***!
   \*************************/
@@ -18216,7 +18309,7 @@
 	}
 
 /***/ },
-/* 11 */
+/* 12 */
 /*!*********************!*\
   !*** ./src/core.js ***!
   \*********************/
@@ -18226,39 +18319,39 @@
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 	
-	var _knockout = __webpack_require__(/*! knockout */ 4);
+	var _knockout = __webpack_require__(/*! knockout */ 5);
 	
 	var _knockout2 = _interopRequireDefault(_knockout);
 	
-	var _firebase = __webpack_require__(/*! firebase */ 12);
+	var _firebase = __webpack_require__(/*! firebase */ 13);
 	
 	var _firebase2 = _interopRequireDefault(_firebase);
 	
-	var _knockoutMapping = __webpack_require__(/*! knockout-mapping */ 9);
+	var _knockoutMapping = __webpack_require__(/*! knockout-mapping */ 10);
 	
 	var _knockoutMapping2 = _interopRequireDefault(_knockoutMapping);
 	
-	var _knockoutPunches = __webpack_require__(/*! knockout-punches */ 13);
+	var _knockoutPunches = __webpack_require__(/*! knockout-punches */ 14);
 	
 	var _knockoutPunches2 = _interopRequireDefault(_knockoutPunches);
 	
-	var _jquery = __webpack_require__(/*! jquery */ 2);
+	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _docHelper = __webpack_require__(/*! ./doc-helper.js */ 14);
+	var _docHelper = __webpack_require__(/*! ./doc-helper.js */ 15);
 	
 	var _docHelper2 = _interopRequireDefault(_docHelper);
 	
-	var _koExtenders = __webpack_require__(/*! ./ko-extenders.js */ 15);
+	var _koExtenders = __webpack_require__(/*! ./ko-extenders.js */ 16);
 	
 	var _koExtenders2 = _interopRequireDefault(_koExtenders);
 	
-	var _utility = __webpack_require__(/*! ./utility.js */ 3);
+	var _utility = __webpack_require__(/*! ./utility.js */ 4);
 	
 	var _utility2 = _interopRequireDefault(_utility);
 	
-	var _extentions = __webpack_require__(/*! ./extentions.js */ 8);
+	var _extentions = __webpack_require__(/*! ./extentions.js */ 9);
 	
 	var _extentions2 = _interopRequireDefault(_extentions);
 	
@@ -18394,7 +18487,7 @@
 	})();
 
 /***/ },
-/* 12 */
+/* 13 */
 /*!****************************************!*\
   !*** ./~/firebase/lib/firebase-web.js ***!
   \****************************************/
@@ -18683,7 +18776,7 @@
 
 
 /***/ },
-/* 13 */
+/* 14 */
 /*!************************************************!*\
   !*** ./~/knockout-punches/knockout.punches.js ***!
   \************************************************/
@@ -18699,7 +18792,7 @@
 	(function (factory) {
 	    if (true) {
 	        // AMD. Register as an anonymous module.
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! knockout */ 4)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! knockout */ 5)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof module === "object") {
 	        // CommonJS module
 	        var ko = require("knockout");
@@ -19289,7 +19382,7 @@
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /*!***************************!*\
   !*** ./src/doc-helper.js ***!
   \***************************/
@@ -19302,7 +19395,7 @@
 	});
 	exports.default = setupDocumentationPage;
 	
-	var _jquery = __webpack_require__(/*! jquery */ 2);
+	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -19348,7 +19441,7 @@
 	}
 
 /***/ },
-/* 15 */
+/* 16 */
 /*!*****************************!*\
   !*** ./src/ko-extenders.js ***!
   \*****************************/
@@ -19361,15 +19454,15 @@
 	});
 	exports.default = setupKoExtenders;
 	
-	var _knockout = __webpack_require__(/*! knockout */ 4);
+	var _knockout = __webpack_require__(/*! knockout */ 5);
 	
 	var _knockout2 = _interopRequireDefault(_knockout);
 	
-	var _knockoutMapping = __webpack_require__(/*! knockout-mapping */ 9);
+	var _knockoutMapping = __webpack_require__(/*! knockout-mapping */ 10);
 	
 	var _knockoutMapping2 = _interopRequireDefault(_knockoutMapping);
 	
-	var _utility = __webpack_require__(/*! ./utility.js */ 3);
+	var _utility = __webpack_require__(/*! ./utility.js */ 4);
 	
 	var _utility2 = _interopRequireDefault(_utility);
 	

@@ -83,3 +83,7 @@ img.url {height: 150px;}
 	color: #008CBA;
 	font-weight: bold;
 }
+
+#hello_world, #add_data, #submit_form, #sort_filter, #samples {
+	display: none;
+}

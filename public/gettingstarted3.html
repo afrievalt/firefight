@@ -73,6 +73,7 @@
         </nav>
     </div>
     <!-- end of Navigation -->
+    <div id="error"></div>
     <div id="samples">
     <div class="row">
         <div class="large-12 columns">
@@ -304,12 +305,14 @@ thead td {
 
                     function enterUrl(snap) {
                         rootRef.update({ "greeting": "Welcome to Firefight js" });
-                        addData(rootRef);
                         setUpButtons(config);
+                        
+                        addData(rootRef);
                         //add more data
                     };
 
                     function failOnce(e){
+                        error("Be sure you turned on Auth in step 5.   " + e)
                         console.log(e)
                     }
                 
@@ -362,6 +365,8 @@ thead td {
                     a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
                     a.draggable = true; // Don't really need, but good practice.
                     $data.attr("value", JSONstring);
+                    $this.show();
+                    $("#samples").show();
                 }
             }
         })();

@@ -16480,7 +16480,9 @@
 	            extend: '_default',
 	            addDataBind: function addDataBind($elm) {
 	                _utility2.default.addDataBind($elm, this.binding, $elm.data('_ffBindTarget'));
-	                //  _.addDataBind($elm, "ffInlineUpdate", "null");
+	                if ($elm.hasAttr("atr-inlineUpdate")) {
+	                    _utility2.default.addDataBind($elm, "ffInlineUpdate", "null");
+	                }
 	            }
 	        },
 	        '[text]': {
@@ -16488,7 +16490,9 @@
 	            extend: '_default',
 	            addDataBind: function addDataBind($elm) {
 	                _utility2.default.addDataBind($elm, this.binding, $elm.data('_ffBindTarget'));
-	                //   _.addDataBind($elm, "ffInlineUpdate", "null");
+	                if ($elm.hasAttr("atr-inlineUpdate")) {
+	                    _utility2.default.addDataBind($elm, "ffInlineUpdate", "null");
+	                }
 	            }
 	        },
 	        '[hidden]': {
