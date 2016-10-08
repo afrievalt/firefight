@@ -204,7 +204,7 @@ thead td {
     <thead>
         <tr>
             <td ff-sort="tbodyNames:first">First Name</td>
-            <td ff-sort="tbodyNames:middle">Middle Innitial</td>
+            <td ff-sort="tbodyNames:middle">Middle Initial</td>
             <td ff-sort="tbodyNames:last">Last Name</td>
             <td ff-sort="tbodyNames:department">Department</td>
             <td ></td>
@@ -312,7 +312,7 @@ thead td {
                     };
 
                     function failOnce(e){
-                        error("Be sure you turned on Auth in step 5.   " + e)
+                        error("Unable to connect to your database.  Be sure you set up Anonymous Auth from step 5.  Likely your database is still getting set up, please wait 30 seconds and hit refresh.   " + e)
                         console.log(e)
                     }
                 

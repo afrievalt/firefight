@@ -21,7 +21,7 @@ export default function getExtentions(ff) {
                     _.addDataBind($elm, "ffInlineUpdate", "null");
                 }
             }
-        },
+        }, 
         '[text]': {
             binding: 'textInput',
             extend: '_default',
@@ -888,7 +888,7 @@ export default function getExtentions(ff) {
                     vm[id] = ko.observable(value);
                 }
 
-                if (child) {
+                if (!child) {
                     //sets up a subscription and needs to be called once so ok to not reassign the observable, but this is not equivalent to: foo = ko.obseverable().extend({});
                     vm[id].extend({ save: id });
                 }

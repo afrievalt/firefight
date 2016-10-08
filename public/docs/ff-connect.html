@@ -28,15 +28,16 @@
             <a href="../docs.html">< Back To DOCS</a>
             <h3>Purpose</h3>
             <p>
-                The <span class="noWrap">ff-connect</span> attribute connects a <a href="#" type="winodw">firebase</a> data set to your HTML.  <span class="noWrap">ff-connect</span> is required for firefight to work.  Only child elements of <span class="noWrap">ff-connect</span> are controlled by firefight. A web page can have only one <span class="noWrap">ff-connect</span> attribute.
-                The <span class="noWrap">&lt;body ff-connect="myAppName"></span> element is an excellent place for the <span class="noWrap">ff-connect</span> attribute.
+                The <span class="noWrap">ff-connect</span> attribute connects a <a href="#" type="winodw">firebase</a> data set to your HTML.  <span class="noWrap">ff-connect</span> is required for firefight to work.  Only child elements of <span class="noWrap">ff-connect</span> are controlled by firefight. A web page can have only one <span class="noWrap">ff-connect</span> attribute.  
+                atr-apiKey value can be found by clikcing "Add Firebase to your web app" in your firebase overview page.
+                The <span class="noWrap">&lt;body ff-connect="myAppName" atr-apiKey="myAppKey"></span> element is an excellent place for the <span class="noWrap">ff-connect</span> attribute.
             </p>
             <h3>options</h3>
             atr-root allows direct access to child nodes of the data.  See <a href="../samples/weather.html">Weather Sample</a> for an example.
             <h3>Sample: simple text</h3>
             <div class="well">
                 <h4>HTML</h4>
-                <pre class="prettyprint">&lt;div ff-connect="ff-demo">
+                <pre class="prettyprint">&lt;div ff-connect="ff-demo" atr-apiKey="AIzaSyAROOIphKjkh96rn7exluKHbLuFfD9A_lo">
   <span>{</span>{someValue}}
 &lt;/div>
 <span>{</span>{someValue}}

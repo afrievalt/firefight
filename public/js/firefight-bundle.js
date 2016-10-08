@@ -17368,7 +17368,7 @@
 	                    vm[id] = _knockout2.default.observable(value);
 	                }
 	
-	                if (child) {
+	                if (!child) {
 	                    //sets up a subscription and needs to be called once so ok to not reassign the observable, but this is not equivalent to: foo = ko.obseverable().extend({});
 	                    vm[id].extend({ save: id });
 	                }

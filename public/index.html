@@ -20,7 +20,7 @@
   ga('create', 'UA-84811786-1', 'auto');
   ga('send', 'pageview');
 
-</script> 
+</script>
 </head>
 
 <body>
@@ -62,7 +62,7 @@
                     <li><a href="docs.html">Documentation</a></li>
                     <li class="divider"></li>
                 </ul>
-                
+
                 <!-- Right Nav Section -->
                 <ul class="right">
                     <li class="divider"></li>
@@ -78,48 +78,55 @@
 
     <div class="row">
         <div class="large-12 columns">
-            <h1>Welcome to Firefight js</h1>
+            <h1>Welcome to <b>Firefight js</b></h1>
         </div>
     </div>
 
     <div class="row">
-        <div class="large-12 columns">
+        <div class="large-6 columns">
             <div class="callout large">
-                <h2>Inject real-time data into your HTML in minutes.</h2>
+                <h2>Easiest SPA library.</h2>
+                <a href="gettingstarted.html" class="button round">Get started</a>
+                <h3>Required skills: <strong>HTML</strong></h3>
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="large-6 columns">
-            <h3>Required skills: <strong>HTML</strong></h3>
+            <a href="https://overcast.fm/+BYt4u63s/07:23">
+                <img class="thumbnail lazy-load" src="./img/dotnetrocks.png" alt="Firefight js discussed on  .NET Rocks!">
+            </a>
         </div>
-        <div class="large-6 columns"><a href="gettingstarted.html" class="button round">Get started</a></div>
+
     </div>
+    
     <div class="row">
         <div class="large-12 columns">
-            Firefight.js is a JavaScript library that allows non-JavaScript programmers to decorate their HTML to provide dynamic / real-time data from Firebase.  
+            Firefight.js is a JavaScript library that allows non-JavaScript programmers to decorate their HTML to provide dynamic / real-time
+            data from Firebase.
         </div>
         <div class="large-12 columns">
             <div class="callout large">
-            
+
                 <h3>How it works:</h3>
                 <p id="steps">
-                    Connect to your <a href='https://firebase.google.com' target='window'>firebase</a> data with ff-connect.  We will use somedbname in this example.
-       
+                    Connect to your <a href='https://firebase.google.com' target='window'>firebase</a> data with ff-connect.
+                    We will use somedbname in this example.
+
                 </p>
                 <a href="#" id="prev">&nbsp;&nbsp;</a>
                 <span><span id="index">1</span>/6</span>
                 <a href="#" id="next">Next ></a>
                 <div>
-                    <img id="slide" src="img/hello_world08.jpg" alt="how to slide"/>
+                    <img id="slide" src="img/hello_world08.jpg" alt="how to slide" />
 
                 </div>
             </div>
         </div>
+        <h4>Have a question?</h4>
+        <p>Contact me, Andy Frievalt at afrievalt@yahoo.com. (please put firefight in the subject) or text me at (414) 617-5881</p>
     </div>
-        <script src="js/vendor/jquery.js"></script>
-        <script src="js/foundation.min.js"></script>
-        <script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
             $(document).foundation();
             (function () {
                 var dom = {
@@ -133,7 +140,7 @@
                 var length = 5;
                 var images = ["img/hello_world08.jpg", "img/hello_world09.jpg", "img/hello_world10.jpg", "img/hello_world11.jpg", "img/hello_world12.jpg", "img/hello_world14.jpg"]
                 var steps = [
-                  "Connect to your <a href='https://firebase.google.com' target='window'>firebase</a> data with ff-connect.  We will use somedbname in this example.",
+                  "It takes under 3 minutes to setup up a free <a href='https://firebase.google.com' target='window'>firebase</a>database.  Connect to your data with ff-connect.  We will use somedbname in this example.",
                   "Access your data by surrounding the data key with handlebars {{greeting}}",
                   "Change your firebase data ...",
                   "...notice the greeting automatically updates.  No need to click refresh, it just woks.",
@@ -174,14 +181,14 @@
                 }
             })();
     </script>
-        <div class="hide">
-            <img id="slide" src="img/hello_world08.jpg"></img>
-            <img id="slide" src="img/hello_world09.jpg"></img>
-            <img id="slide" src="img/hello_world10.jpg"></img>
-            <img id="slide" src="img/hello_world11.jpg"></img>
-            <img id="slide" src="img/hello_world12.jpg"></img>
-            <img id="slide" src="img/hello_world14.jpg"></img>
-        </div>
+    <div class="hide">
+        <img id="slide" src="img/hello_world08.jpg"></img>
+        <img id="slide" src="img/hello_world09.jpg"></img>
+        <img id="slide" src="img/hello_world10.jpg"></img>
+        <img id="slide" src="img/hello_world11.jpg"></img>
+        <img id="slide" src="img/hello_world12.jpg"></img>
+        <img id="slide" src="img/hello_world14.jpg"></img>
+    </div>
 </body>
 
 </html>
